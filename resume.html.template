@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ header.name }} Resume</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<body>
+<div class="button-container">
+    <a href="{{ header.printable_download_link }}" class="download-btn printable-btn" download aria-label="Printable">Printable</a>
+    <a href="{{ header.download_link }}" class="download-btn pdf-btn" target="_blank" rel="noopener noreferrer" aria-label="View PDF">View PDF</a>
+</div>
+<header>
+    <h1>{{ header.name }}</h1>
+    <h2>{{ header.title }}</h2>
+    <div class="contact">
+        <div>Email: <a href="mailto:{{ header.contact.email }}">{{ header.contact.email }}</a> | <a href="{{ header.contact.linkedin }}" target="_blank">{{ header.contact.linkedin }}</a></div>
+        <div>Location: {{ header.contact.location }} | Phone: {{ header.contact.phone }}</div>
+    </div>
+    <div class="testimonial">
+        {{ header.testimonial.text }}<br><br>— {{ header.testimonial.author }}
+    </div>
+</header>
+
+<section>
+    <h3>Summary</h3>
+    {{ summary }}
+</section>
+
+<section>
+    <h3>Technical Expertise</h3>
+    {% for subsection, items in technical_expertise.items() %}
+    <h4>{{ subsection }}</h4>
+    <ul>
+        {% for item in items %}
+        <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</section>
+
+<section>
+    <h3>Current Position</h3>
+    <p><strong>{{ current_position.title }}</strong>, {{ current_position.company }} ({{ current_position.dates }})</p>
+    <ul>
+        {% for achievement in current_position.achievements %}
+        <li>{{ achievement }}</li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section>
+    <h3>Past Positions</h3>
+    {% for position in past_positions %}
+    <p><strong>{{ position.title }}</strong>, {{ position.company }} ({{ position.dates }})</p>
+    <ul>
+        {% for achievement in position.achievements %}
+        <li>{{ achievement }}</li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</section>
+
+<section>
+    <h3>Education</h3>
+    {% for edu in education %}
+    <p><strong>{{ edu.degree }}</strong>, {{ edu.institution }}, {{ edu.year }}</p>
+    <ul>
+        {% for detail in edu.details %}
+        <li>{{ detail.text }}
+            {% if detail.sublist %}
+            <ul>
+                {% for subitem in detail.sublist %}
+                <li>{{ subitem }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</section>
+
+<section>
+    <h3>Patents & Publications</h3>
+    <ul>
+        {% for item in patents_publications %}
+        <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+</section>
+
+</body>
+</html>
