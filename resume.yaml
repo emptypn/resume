@@ -1,152 +1,102 @@
 header:
-  name: David Elkind
-  title: Principal Software Engineer | Distributed Systems | Observability | Low-level
-  download_link: David_Elkind_Resume.pdf
-  printable_download_link: Printable_David_Elkind_Resume.pdf
+  name: Nachum Getzel Elkind
+  title: Software Engineer | Low-Level Systems | Cybersecurity
+  download_link: Nachum_Getzel_Elkind_Resume.pdf
+  printable_download_link: Printable_Nachum_Getzel_Elkind_Resume.pdf
   contact:
-    email: david.elkind@gmail.com
-    linkedin: https://linkedin.com/in/delkind
+    email: nachumgetzel.elkind@gmail.com
+    linkedin: https://github.com/ngelkind
     location: Beit Shemesh, Israel
-    phone: +972-54-448-6190
+    phone: 054-595-5698
   testimonial:
     text: |
-      David is a true renaissance man of the software industry: combining deep intrinsic knowledge of systems with hands-on 
-      creativity and the ability to communicate complex subjects to technical and non-technical audiences."
-    author: James Kirk, Director, Solutions Delivery, Aternity
+      An exceptional talent with rare deep-systems intuition. Nachum combines the theoretical rigor of a top-tier academic 
+      with the practical 'hacker' mindset needed to solve complex low-level challenges.
+    author: Inbar Levy, Magshimim course instructor
 summary: |
-  20+ years of software industry experience spanning hands-on systems architecture, technical leadership, and deep innovation across startup and enterprise environments.
-  Led complex, high‑scale initiatives, mentored teams, and shipped resilient systems with measurable performance gains. M.Sc. Summa Cum Laude. 
-  Holder of 4 <a href="https://patents.google.com/?inventor=david+elkind&assignee=Aternity+Information+Systems+Ltd.,Kevin+Bermeister,
-  Identify&oq=inventor:(david+elkind)+assignee:(Aternity+Information+Systems+Ltd.)+assignee:(Kevin+Bermeister)+assignee:(Identify)" target="_blank" 
-  rel="noopener noreferrer">registered patents</a> and co-author of a <a href="https://elifesciences.org/articles/82376" target="_blank" 
-  rel="noopener noreferrer">peer-reviewed publication</a> in a tier-1 scientific magazine (<em>eLife</em>).
+  High-achieving software engineer with advanced expertise in low-level systems, algorithm design, and cybersecurity. 
+  Graduate of Israel’s elite Magshimim National Cyber Program with honors, combining deep theoretical foundations 
+  in Computer Science with hands-on experience in reverse engineering, assembly, and systems architecture.
+  Proven track record in national-level competitions and university-level academic excellence while in high school.
 technical_expertise:
-  Observability & Cloud Architecture:
-  - Application Performance Monitoring and distributed tracing
-  - Agent development across multiple runtimes (.NET, Java, Python)
-  - Scalable cloud-native architecture (Kubernetes, microservices)
-  - Real-time analytics and stream processing (Apache Flink, Kafka)
-  Systems & Low-Level Programming:
-  - Low-level system programming and kernel development (Win32, Linux, assembly x86/ARM)
-  - Bytecode instrumentation (Java, .NET) and runtime monitoring systems
-  - OS internals, device drivers, and kernel-mode programming
-  - High-performance distributed systems, concurrency, multithreading
-  - Network stack implementation and performance optimization
-  Modern Development & AI:
-  - AI-assisted development (ChatGPT, Grok) for code generation and optimization
-  - Machine Learning & Deep Learning (PyTorch, Keras, Detectron2)
-  - Computer Vision & Natural Language Processing
-  - Rapid prototyping, reverse engineering, technology evaluation
-  Platforms & Technologies:
-  - 'Languages: Assembly (x86/ARM), C, C++, Java, Python, C#/.NET, JavaScript'
-  - 'Agent Development: Runtime instrumentation, bytecode manipulation'
-  - 'Platforms: Linux, Windows, macOS, Android, iOS, ARM, x86'
-  - 'Cloud: Kubernetes, Apache Flink, Kafka, OpenTelemetry, Prometheus'
-  - 'Specialties: Low level programming, TCP/IP stacks, security, DRM systems'
-  Leadership & Innovation:
-  - Technical leadership across distributed global teams
-  - Full-stack product development and enterprise architecture
-  - 4 registered patents, 1 peer-reviewed publication (eLife Journal)
+  Low-Level Systems & Security:
+  - Assembly (8086) programming and architecture
+  - Reverse engineering and binary analysis (IDA Pro)
+  - Network protocol analysis and packet inspection (Wireshark, Fiddler)
+  - OS fundamentals and memory management
+  Software Development:
+    - AI-assisted development (ChatGPT, Grok, Claude, Gemini) for code generation and optimization
+    - Coding agents (Codex, Cursor)
+    - Object-Oriented Programming (OOP) design patterns
+    - Algorithm design and complexity analysis
+    - Client-Server architecture and socket programming
+    - System integration and API development
+  Languages & Tools:
+  - 'Languages: C, C++, Assembly (8086), Python, Java, JavaScript, Node.JS'
+  - 'Tools: Git, GitHub, Wireshark, IDA Pro, Fiddler'
+  - 'Platforms: Windows, Linux'
   Languages Spoken:
-  - English (fluent), Hebrew (fluent), Russian (native)
-current_position:
-  title: Senior Principal Engineer | Consulting Member of Technical Staff
-  company: Oracle Corporation
-  dates: 2017-Present
-  achievements:
-  - Contributing architect for cloud-native OCI monitoring platform processing over 300GB/hour.
-  - Designed .NET monitoring agent with bytecode instrumentation for low-overhead tracing.
-  - Built Python monitoring agent prototype to expand platform coverage.
-  - Implemented bytecode instrumentation for low-overhead Java application tracing.
-  - Designed and implemented internal health monitoring systems for distributed microservices architecture.
-  - Integrated OpenTelemetry and Prometheus data into the product.
-  - Developed streaming analytics components using Apache Flink and Kafka.
-  - Leveraged AI tools like ChatGPT and Grok for coding acceleration and optimization.
-  - Mentored engineers across global teams in California, Netherlands, India, and China.
-past_positions:
-- title: Founder & CTO
-  company: Decode Systems Ltd
-  dates: 2006-2008, 2013-2017
-  achievements:
-  - Designed and implemented hybrid computer vision and deep learning system for real-time fall detection with edge pre-processing and cloud DNN classification.
-  - Designed cloud-based content mediation platforms for ISPs, enabling high-throughput data processing at scale.
-  - Architected and built an ultra-low latency framework for forex trading systems at major banks, allowing business logic to be implemented in Java atop a high-performance foundation.
-  - Implemented cyber-attack detection systems and DRM modules for media protection and anti-piracy.
-  - Developed low-level virtualization modules (sandboxing) and mobile hot-patching platforms for iOS and Android.
-  - Conducted iOS internals research for automated testing solution vendors.
-  - Delivered end-to-end architecture and technology solutions for clients ranging from startups to Fortune 500 enterprises.
-- title: Director, Product Management
-  company: Limelight Networks
-  dates: 2013-2014
-  achievements:
-  - Led product roadmap and strategic planning for Limelight Orchestrate Performance platform serving web optimization market.
-  - Conducted competitive analysis and market research to identify technical differentiation opportunities in CDN and performance space.
-  - Collaborated with engineering teams to define technical architecture and implementation priorities for performance monitoring solutions.
-  - Bridged technical and business teams to align product capabilities with enterprise customer requirements and market trends.
-- title: Chief Technology Officer
-  company: Aternity
-  dates: '2012'
-  achievements:
-  - Led the corporate CTO office, setting technology strategy and driving the company's vision for end-user experience monitoring solutions.
-  - Owned corporate IP and patents strategy, identifying and protecting key technological innovations to maintain competitive advantage.
-  - Defined and validated key technology enablers and led the adoption of innovative techniques to strengthen Aternity's market position in APM space.
-  - Engaged directly with strategic customers and partners to identify critical requirements and new product capabilities for enterprise-scale deployments.
-  - Directed beta programs for advanced monitoring technologies and coordinated organizational response to competitive threats.
-  - Worked closely with Product Marketing to articulate technology positioning and craft technical messaging for analysts, customers, and partners.
-- title: Director, R&D
-  company: Aternity
-  dates: 2010-2012
-  achievements:
-  - Led full product lifecycle for the Aternity monitoring agent deployed across 500K+ enterprise endpoints globally.
-  - Managed 3 specialized engineering teams (20+ engineers) focused on low-latency data collection and real-time performance analysis.
-  - Architected and delivered scalable monitoring infrastructure processing millions of events per day from enterprise applications.
-  - Improved product quality dramatically, reducing customer-impacting issues from 10 cases per week to single digits per quarter.
-  - Enhanced incident response capabilities, decreasing MTTR from days/weeks to hours through improved processes, monitoring and diagnostics.
-  - Contributed to strategic planning as key member of executive R&D team, defining technology vision and market positioning.
-- title: Chief Architect, Director of New Technology
-  company: Aternity
-  dates: 2008-2010
-  achievements:
-  - Led research and prototyping of breakthrough monitoring capabilities, including application flow tracing and performance bottleneck detection.
-  - Identified and evaluated emerging technologies in APM space, maintaining competitive advantage through early adoption of innovative monitoring techniques.
-  - Designed reference implementations for next-generation monitoring features that became core product differentiators.
-  - Contributed to strategic planning as key technology advisor, defining multi-year product architecture roadmap.
-  - Established technical standards and architectural patterns adopted across all product development teams.
-- title: Core Technology Lead and Senior Architect
-  company: Identify Software Ltd (Acquired by BMC Software)
-  dates: 2000-2006
-  achievements:
-  - Designed and developed BlackBox technology, enabling unobtrusive runtime execution flow tracing across Win32, Win64, and Linux platforms.
-  - Architected cross-platform monitoring solution supporting COM/DCOM, .NET applications, and distributed transactions in heterogeneous enterprise environments.
-  - Led team of 8 software engineers and managed product-wide infrastructure development, establishing architectural standards adopted company-wide.
-  - Designed and implemented continuous build and integration system, improving development velocity and code quality across distributed teams.
-  - Coordinated global development efforts, including successful collaboration with offshore R&D teams and Technical Support organizations.
-  - Created technology platform that became core IP asset in BMC Software acquisition, demonstrating commercial value of innovative monitoring solutions.
-- title: Consulting Team Lead
-  company: Gravity Computing Systems Ltd
-  dates: 1997-2000
-  achievements:
-  - Led specialized systems programming consulting practice serving enterprise software development companies across full project lifecycle.
-  - Delivered critical low-level solutions including kernel drivers, network protocol implementations, and security systems for mission-critical applications.
-  - Built runtime tracing technologies, packet filtering systems, and file system drivers enabling advanced monitoring and security capabilities.
-  - Managed team of expert developers and provided deep systems debugging support for complex production issues requiring OS-level expertise.
-  - Built foundation expertise in systems internals and performance optimization that became core competency of the company.
+  - Russian (C2 - Native/Bilingual)
+  - Hebrew (C1 - Professional Working Proficiency)
+  - English (B2 - Professional Working Proficiency)
+projects:
+- title: Chess Engine
+  technologies: C++, OOP
+  description: |
+    Architected and developed a full-featured chess engine from scratch.
+    - Implemented complex game logic using advanced Object-Oriented design patterns.
+    - Optimized move generation and board evaluation algorithms for performance.
+    - Designed robust memory management system for game state handling.
+- title: Client-Server Application
+  technologies: Python, Sockets, Networking
+  description: |
+    Built a robust distributed system using raw socket programming.
+    - Implemented custom application-level protocols on top of TCP/IP.
+    - Handled concurrency and multiple client connections efficiently.
+    - Designed secure message passing and error handling mechanisms.
+- title: Telegram Bot Integration
+  technologies: Node.JS, OpenAI API, Google Calendar API
+  description: |
+    Developed an intelligent scheduling assistant integrating multiple external APIs.
+    - Integrated ChatGPT for natural language processing of user requests.
+    - Implemented real-time two-way sync with Google Calendar.
+    - Built scalable backend infrastructure in Node.js to handle webhook events.
+- title: Chrome Extension
+  technologies: JavaScript, ChatGPT API
+  description: |
+    Created a browser-based productivity tool leveraging AI.
+    - Engineered seamless DOM manipulation for on-page content interaction.
+    - Integrated asynchronous API calls for real-time AI responses.
+- title: Supermarket Price Scraper
+  technologies: Python, Web Scraping
+  description: |
+    Developed an automated data collection tool for retail analytics.
+    - Reverse-engineered web requests to bypass anti-scraping measures.
+    - Implemented data normalization and structured storage for analysis.
 education:
-- degree: Master of Science (M.Sc)
-  institution: Computer Science, The Open University of Israel
-  year: '2022'
+- degree: Magshimim National Cyber Program
+  institution: Israel National Cyber Directorate
+  year: '2021-Present'
   details:
-  - text: Graduated <em>Summa Cum Laude</em> with GPA 96
+  - text: Elite cyber training program for gifted students
     sublist:
-    - 'Thesis: "Automated cell counting using deep neural networks, analyzing 537 murine brain samples"'
-    - Applied PyTorch, Keras, and Detectron2 to build computer vision pipeline
-    - Applied Python data science stack to perform quantitative analysis on the collected cell data
-    - Published <a href="https://elifesciences.org/articles/82376" target="_blank" rel="noopener noreferrer">peer-reviewed research</a> in eLife Journal
-- degree: Bachelor of Science (B.Sc)
-  institution: Computer Science, The Open University of Israel
-  year: '2006'
+    - 'First Year Average: 97.5'
+    - 'Second Year Average: 99.7'
+    - 'Focus: Algorithms, Low-level programming, Networks, Cyber warfare'
+    - Participant in national-level capture-the-flag (CTF) competition stage
+- degree: High School Diploma
+  institution: High School
+  year: '2027 (Expected)'
   details:
-  - text: Graduated <em>Cum Laude</em> with GPA 93
-patents_publications:
-- Four <a href="https://patents.google.com/?inventor=david+elkind&assignee=Aternity+Information+Systems+Ltd.,Kevin+Bermeister,Identify&oq=inventor:(david+elkind)+assignee:(Aternity+Information+Systems+Ltd.)+assignee:(Kevin+Bermeister)+assignee:(Identify)">registered patents</a> in software and monitoring technologies.
-- Published <a href="https://elifesciences.org/articles/82376" target="_blank" rel="noopener noreferrer">a peer-reviewed article</a> in eLife Magazine.
+  - text: Excellence Track
+    sublist:
+    - 'Overall Average: 95+'
+    - 'Computer Science (5 units): 100'
+- degree: Academy in High School
+  institution: The Open University of Israel
+  year: '2023-Present'
+  details:
+  - text: Early Academic Track
+    sublist:
+    - Accepted to B.Sc. Computer Science track during high school
+    - Successfully completed first-year mathematics-oriented course
