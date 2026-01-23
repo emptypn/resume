@@ -41,6 +41,8 @@
     {% endfor %}
 </section>
 
+
+{% if current_position %}
 <section>
     <h3>Current Position</h3>
     <p><strong>{{ current_position.title }}</strong>, {{ current_position.company }} ({{ current_position.dates }})</p>
@@ -50,7 +52,9 @@
         {% endfor %}
     </ul>
 </section>
+{% endif %}
 
+{% if past_positions %}
 <section>
     <h3>Past Positions</h3>
     {% for position in past_positions %}
@@ -62,6 +66,17 @@
     </ul>
     {% endfor %}
 </section>
+{% endif %}
+
+{% if projects %}
+<section>
+    <h3>Projects</h3>
+    {% for project in projects %}
+    <p><strong>{{ project.title }}</strong> | {{ project.technologies }}</p>
+        {{ project.description }}
+    {% endfor %}
+</section>
+{% endif %}
 
 <section>
     <h3>Education</h3>
@@ -81,15 +96,6 @@
         {% endfor %}
     </ul>
     {% endfor %}
-</section>
-
-<section>
-    <h3>Patents & Publications</h3>
-    <ul>
-        {% for item in patents_publications %}
-        <li>{{ item }}</li>
-        {% endfor %}
-    </ul>
 </section>
 
 </body>

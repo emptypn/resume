@@ -22,6 +22,7 @@ def render_html(yaml_path, template_path, output_path):
         output_file.write(output)
 
     print(f"HTML rendered to {output_path}")
+    return data
 
 
 def html_to_pdf_single_page(html_file, output_pdf):
@@ -76,12 +77,15 @@ def html_to_pdf_printable(html_file, output_pdf, scale):
 def main():
     try:
         print("Rendering HTML...")
-        render_html("resume.yaml", "resume.html.template", "index.html")
-        output_pdf = 'David_Elkind_Resume.pdf'
+        data = render_html("resume.yaml", "resume.html.template", "index.html")
+
+        output_pdf = data['header']['download_link']
+        printable_output_pdf = data['header']['printable_download_link']
+
         print("Rendering single-page PDF...")
         html_to_pdf_single_page('index.html', output_pdf)
         print("Rendering printable PDF...")
-        html_to_pdf_printable('index.html', f'Printable_{output_pdf}', 0.9)
+        html_to_pdf_printable('index.html', printable_output_pdf, 0.9)
         print(f"PDFs generated...")
     except Exception as e:
         print(f"Error: {str(e)}")
