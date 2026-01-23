@@ -1,1 +1,1 @@
-Click <a href="https://delkind.github.io/resume">here</a> to view David Elkind's Resume.
+Click <a href="https://ngelkind.github.io/resume">here</a> to view Nachum Getzel Elkind's Resume.
