@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,9 +19,11 @@
         <div>Email: <a href="mailto:{{ header.contact.email }}">{{ header.contact.email }}</a> | <a href="{{ header.contact.linkedin }}" target="_blank">{{ header.contact.linkedin }}</a></div>
         <div>Location: {{ header.contact.location }} | Phone: {{ header.contact.phone }}</div>
     </div>
-    <div class="testimonial">
+    {% if header.testimonial %}
+<div class="testimonial">
         {{ header.testimonial.text }}<br><br>— {{ header.testimonial.author }}
     </div>
+{% endif %}
 </header>
 
 <section>
@@ -100,3 +102,4 @@
 
 </body>
 </html>
+
