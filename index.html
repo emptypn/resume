@@ -3,199 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <title>Nachum Getzel Elkind Resume</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+/* The single-resume design (2026-08-25), rebuilt to reproduce the user's canonical PDF
+   ("Resume (5)"): A4, Carlito/Calibri, navy #1F3352 headings with a full-width rule,
+   tight bullet rhythm. Color and metrics were sampled from the PDF's own render, not
+   eyeballed. The PDF is produced by Chromium print on THIS design, so screen and print
+   rules live together here. */
+
+:root {
+    --navy: #1F3352;
+    --rule: #293C5A;
+    --ink: #111111;
+    --muted: #444444;
+    --faint: #666666;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: Carlito, Calibri, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 10.3pt;
+    line-height: 1.22;
+    color: var(--ink);
+    background: #ffffff;
+    max-width: 21cm;
+    margin: 0 auto;
+    padding: 7mm 12.5mm 10mm;
+}
+
+/* ---------------------------------------------------------------- header */
+header { text-align: center; margin-bottom: 2pt; }
+
+header h1 {
+    font-size: 19.5pt;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.2pt;
+}
+
+.tagline {
+    font-size: 11.5pt;
+    color: #333333;
+    margin-top: 2pt;
+}
+
+.contact-line {
+    font-size: 10pt;
+    color: var(--muted);
+    margin-top: 2pt;
+}
+.contact-line a { color: var(--muted); text-decoration: none; }
+
+/* --------------------------------------------------------------- sections */
+section { margin-top: 5pt; }
+
+/* Every section heading gets the canonical treatment — including the legacy macros'
+   bare <h3>, so old-schema renders inherit the new look instead of a mismatched one. */
+section > h3 {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 1.6pt;
+    border-bottom: 1.2pt solid var(--rule);
+    padding-bottom: 2.5pt;
+    margin-bottom: 5pt;
+}
+
+h4.group {
+    font-size: 10.6pt;
+    font-weight: 700;
+    color: var(--navy);
+    margin-top: 4pt;
+    margin-bottom: 1.5pt;
+}
+
+p { margin-bottom: 2.5pt; }
+
+/* ------------------------------------------------------------- experience */
+.role-line { margin-bottom: 2pt; }
+.role-line .role { font-weight: 700; }
+.role-line .dates { color: var(--faint); font-style: italic; }
+.sep { color: var(--faint); }
+
+ul.bullets { list-style: none; margin: 0 0 3pt 0; }
+ul.bullets li {
+    padding-left: 13pt;
+    position: relative;
+    margin-bottom: 1.8pt;
+}
+ul.bullets li::before {
+    content: "\2022";
+    position: absolute;
+    left: 4pt;
+    color: var(--ink);
+}
+ul.bullets li .lead { font-weight: 700; }
+
+.stack-line { margin-top: 2pt; }
+
+/* ----------------------------------------------------------- what i bring */
+.bring-item { padding-left: 9pt; margin-bottom: 2pt; }
+.bring-item .term { font-weight: 700; }
+
+/* --------------------------------------------------------------- projects */
+.project { margin-top: 4.5pt; }
+.project-title .name { font-weight: 700; }
+.project-title .tech { color: var(--faint); font-style: italic; }
+
+/* -------------------------------------------------------------- education */
+.edu { margin-top: 4pt; }
+.edu-line .name { font-weight: 700; }
+.edu-line .dates { color: var(--faint); font-style: italic; }
+
+/* -------------------------------------------------------------- languages */
+.languages-line { margin-top: 1pt; }
+
+/* -------------------------------------------------- legacy schema support */
+/* The pre-2026-08-25 sections (technical_expertise, current_position, ...) keep
+   rendering for old YAML fixtures and any future variant work. They inherit the new
+   typography; only their structural rules are kept. */
+h4 { color: var(--navy); }
+section > ul, section ul.plain { margin-left: 16pt; margin-bottom: 3pt; }
+.button-container { text-align: right; margin-bottom: 6pt; }
+.download-btn {
+    font-size: 9.5pt; color: var(--navy); text-decoration: none;
+    border: 1pt solid var(--navy); border-radius: 3pt; padding: 2pt 8pt;
+}
+.testimonial { font-style: italic; color: var(--muted); margin-top: 4pt; }
+
+/* ------------------------------------------------------------------ print */
+@page { size: A4; margin: 0; }
+@media print {
+    body { padding: 7mm 12.5mm 8mm; max-width: none; }
+    .button-container { display: none; }
+    /* NEVER `break-inside: avoid` on a whole section: the Experience section is nearly
+       a page long, so "avoid" can only be honored by shoving the section to a fresh
+       page — that single rule turned this two-page resume into four. Keep atomic units
+       small: a bullet, one project, one education entry, a heading with its follower. */
+    ul.bullets li, .project, .edu, .bring-item { break-inside: avoid-page; }
+    section > h3, h4.group { break-after: avoid-page; }
+    a { color: inherit; }
+}
+
+    </style>
 </head>
 <body>
-<body>
 <div class="button-container">
-    <a href="Printable_Nachum_Getzel_Elkind_Resume.pdf" class="download-btn printable-btn" download aria-label="Printable">Printable</a>
     <a href="Nachum_Getzel_Elkind_Resume.pdf" class="download-btn pdf-btn" target="_blank" rel="noopener noreferrer" aria-label="View PDF">View PDF</a>
 </div>
 <header>
     <h1>Nachum Getzel Elkind</h1>
-    <h2>Software Engineer | Low-Level Systems | Cybersecurity</h2>
-    <div class="contact">
-        <div>Email: <a href="mailto:nachumgetzel.elkind@gmail.com">nachumgetzel.elkind@gmail.com</a> | <a href="https://github.com/ngelkind" target="_blank">https://github.com/ngelkind</a></div>
-        <div>Location: Beit Shemesh, Israel | Phone: 054-595-5698</div>
-    </div>
-    <div class="testimonial">
-        An exceptional talent with rare deep-systems intuition. Nachum combines the theoretical rigor of a top-tier academic 
-with the practical 'hacker' mindset needed to solve complex low-level challenges.
-<br><br>— bbchatt
+    <div class="tagline">Software Engineer & Product Owner  —  AI Systems | Cybersecurity</div>
+    <div class="contact-line"><a href="mailto:nachumgetzel.elkind@gmail.com">nachumgetzel.elkind@gmail.com</a> &middot; <a href="https://github.com/ngelkind">github.com/ngelkind</a> &middot; Beit Shemesh, Israel &middot; 054-595-5698
     </div>
 </header>
-
 <section>
     <h3>Summary</h3>
-    High-achieving software engineer with advanced expertise in low-level systems, algorithm design, and cybersecurity. 
-Graduate of Israel’s elite Magshimim National Cyber Program with honors, combining deep theoretical foundations 
-in Computer Science with hands-on experience in reverse engineering, assembly, and systems architecture.
-Proven track record in national-level competitions and university-level academic excellence while in high school.
-
+    <p>I build LLM systems that ship to real customers — and I own them end to end, from the problem to the report a security analyst actually reads. At XM Cyber I am the sole developer and de facto product owner of an AI analysis engine that audits customers’ attack-path configurations: I scoped what it should and shouldn’t do, defined what counts as a finding worth surfacing, and built the verification and privacy layers that made it safe to put in front of enterprise security teams. I care most about the part of the work where product judgment and engineering meet: deciding what to ship, what to leave out, and how to prove it works. Background in low-level systems and reverse engineering from Israel’s Magshimim National Cyber Program.</p>
 </section>
-
 <section>
-    <h3>Technical Expertise</h3>
-    
-    <h4>Low-Level Systems & Security</h4>
-    <ul>
-        
-        <li>Assembly (8086) programming and architecture</li>
-        
-        <li>Reverse engineering and binary analysis (IDA Pro)</li>
-        
-        <li>Network protocol analysis and packet inspection (Wireshark, Fiddler)</li>
-        
-        <li>OS fundamentals and memory management</li>
-        
+    <h3 class="section">Experience</h3>
+    <p class="role-line"><span class="role">Solutions Developer</span> <span class="sep">&mdash;</span> XM Cyber, Tel Aviv <span class="sep">|</span> <span class="dates">April 2026 – Present</span></p>
+    <p>Sole developer and product owner of an LLM-powered configuration-hygiene system for an enterprise attack-path management platform. It audits every attack scenario in a customer environment, finds the ones that are broken, redundant, misnamed, or silently producing nothing, and generates prioritized, environment-specific remediation advice. Also shipped two AI agents into the product. Advisory-only by design; currently migrating from proof of concept into the production codebase.</p>
+    <h4 class="group">Product ownership</h4>
+    <ul class="bullets">
+        <li><span class="lead">Took an open-ended problem to a shipping product.</span> Started from a vague complaint — customer attack scenarios silently rot over time — and turned it into a defined product: what counts as a finding, which findings deserve a security team’s attention, and what the system deliberately refuses to do.</li>
+        <li><span class="lead">Made the scoping call that made adoption possible.</span> Chose advisory-and-read-only over auto-remediation, then backed it with a five-layer structural guarantee that the system cannot modify customer data — trading capability for the trust required to run inside a customer environment.</li>
+        <li><span class="lead">Treated prioritization as the core product problem.</span> Deduplication, root-cause suppression, and confidence-based ranking so a team sees the handful of issues that matter rather than two hundred symptoms of one cause.</li>
+        <li><span class="lead">Designed for the reader, not the engineer.</span> A report-contract gate that encodes every class of bad output found in manual review as a deterministic pre-publish check, plus a jargon linter so non-technical stakeholders can act on a finding without a translator.</li>
+        <li><span class="lead">Built the measurement, then reported it honestly.</span> Defined the evaluation before claiming a result: ~88% precision on the high-confidence tier, and a 25-run cross-model comparison that I published as “no statistically significant winner” (p≈0.33) with the prompt-tuning confound documented, rather than picking the flattering read.</li>
+        <li><span class="lead">Made the product handoff-ready.</span> A 37-file internal knowledge base and two agent skills so the next engineer can audit why the system judged something the way it did — written for onboarding, not for me.</li>
     </ul>
-    
-    <h4>Software Development</h4>
-    <ul>
-        
-        <li>AI-assisted development (ChatGPT, Grok, Claude, Gemini) for code generation and optimization</li>
-        
-        <li>Coding agents (Codex, Cursor)</li>
-        
-        <li>Object-Oriented Programming (OOP) design patterns</li>
-        
-        <li>Algorithm design and complexity analysis</li>
-        
-        <li>Client-Server architecture and socket programming</li>
-        
-        <li>System integration and API development</li>
-        
+    <h4 class="group">Engineering</h4>
+    <ul class="bullets">
+        <li>Architected a four-layer analysis engine (data → comparison → detection → orchestration) with enforced import boundaries and 16 independent detectors — 6 LLM-backed, 10 fully deterministic — backed by ~1,100 automated tests, including false-positive regression suites where every adjudicated false positive is encoded so it can never reappear.</li>
+        <li>Built a propose → verify → revise → revert loop that makes LLM-authored advice safe to ship: the model returns structured JSON, nine deterministic verifiers check every claim against platform ground truth, failures get one targeted revision round and then fall back to safe generic text. Every number in the final output is computed in code, never by the model.</li>
+        <li>Designed the anonymization layer that makes LLM use viable in a security product: deterministic regex masking with stable hash pseudonyms, a payload contract enforced at both type-check and runtime so no client can skip anonymization, and a per-run deny-list checked at a single chokepoint that aborts on any leak. Shipped an offline audit tool that proves compliance across a full customer environment with zero LLM calls.</li>
+        <li>Implemented an entity-inventory query layer and tool-calling loop so the model grounds answers in real data: a lazily-built SQLite index over compressed NDJSON, a boolean expression-tree selector parser, and five read-only tools exposed both in-process and over MCP (JSON-RPC 2.0). Queries the index cannot evaluate return unknown rather than a misleading 0.</li>
+        <li>Optimized the comparison hot path with a C extension (bitset Jaccard, popcount intrinsics, size pre-filter), chosen by benchmarking 10 implementations against each other for identical results.</li>
     </ul>
-    
-    <h4>Languages & Tools</h4>
-    <ul>
-        
-        <li>Languages: C, C++, Assembly (8086), Python, Java, JavaScript, Node.JS</li>
-        
-        <li>Tools: Git, GitHub, Wireshark, IDA Pro, Fiddler</li>
-        
-        <li>Platforms: Windows, Linux</li>
-        
-    </ul>
-    
-    <h4>Languages Spoken</h4>
-    <ul>
-        
-        <li>Russian (C2 - Native/Bilingual)</li>
-        
-        <li>Hebrew (C1 - Professional Working Proficiency)</li>
-        
-        <li>English (B2 - Professional Working Proficiency)</li>
-        
-    </ul>
-    
+    <p class="stack-line"><strong>Stack:</strong> Python (asyncio, httpx, Pydantic, pytest), C, SQLite, Bash, Git, MCP, LLM APIs</p>
 </section>
-
-
-
-
-
-
-
 <section>
-    <h3>Projects</h3>
-    
-    <p><strong>Chess Engine</strong> | C++, OOP</p>
-        Architected and developed a full-featured chess engine from scratch.
-- Implemented complex game logic using advanced Object-Oriented design patterns.
-- Optimized move generation and board evaluation algorithms for performance.
-- Designed robust memory management system for game state handling.
-
-    
-    <p><strong>Client-Server Application</strong> | Python, Sockets, Networking</p>
-        Built a robust distributed system using raw socket programming.
-- Implemented custom application-level protocols on top of TCP/IP.
-- Handled concurrency and multiple client connections efficiently.
-- Designed secure message passing and error handling mechanisms.
-
-    
-    <p><strong>Telegram Bot Integration</strong> | Node.JS, OpenAI API, Google Calendar API</p>
-        Developed an intelligent scheduling assistant integrating multiple external APIs.
-- Integrated ChatGPT for natural language processing of user requests.
-- Implemented real-time two-way sync with Google Calendar.
-- Built scalable backend infrastructure in Node.js to handle webhook events.
-
-    
-    <p><strong>Chrome Extension</strong> | JavaScript, ChatGPT API</p>
-        Created a browser-based productivity tool leveraging AI.
-- Engineered seamless DOM manipulation for on-page content interaction.
-- Integrated asynchronous API calls for real-time AI responses.
-
-    
-    <p><strong>Supermarket Price Scraper</strong> | Python, Web Scraping</p>
-        Developed an automated data collection tool for retail analytics.
-- Reverse-engineered web requests to bypass anti-scraping measures.
-- Implemented data normalization and structured storage for analysis.
-
-    
+    <h3 class="section">What I Bring</h3>
+    <h4 class="group">Product</h4>
+    <div class="bring-item"><span class="term">Discovery & scoping</span> <span class="sep">&mdash;</span> turning an ambiguous problem into a defined product surface, including what to leave out</div>
+    <div class="bring-item"><span class="term">Prioritization</span> <span class="sep">&mdash;</span> ranking, deduplication, and root-cause thinking so output respects the user’s attention</div>
+    <div class="bring-item"><span class="term">Metrics & evaluation design</span> <span class="sep">&mdash;</span> defining success criteria for non-deterministic systems; A/B benchmarking, ground-truth labeling, LLM-as-judge</div>
+    <div class="bring-item"><span class="term">Writing</span> <span class="sep">&mdash;</span> specs, internal documentation, and customer-facing output written for the actual audience</div>
+    <div class="bring-item"><span class="term">Trust & safety tradeoffs</span> <span class="sep">&mdash;</span> privacy, read-only guarantees, and hallucination containment as product requirements, not afterthoughts</div>
+    <div class="bring-item"><span class="term">AI / LLM systems</span> <span class="sep">&mdash;</span> prompt architecture with named, individually-disableable rule blocks for regression bisection; version-gated prompt variants; structured JSON output and schema enforcement; tool-calling loops with bounded rounds; MCP server implementation; hallucination verification and deterministic fallback design; anonymization for model input; provider abstraction across Claude, Gemini, OpenAI, OpenRouter, and internal gateways</div>
+    <div class="bring-item"><span class="term">Backend & systems</span> <span class="sep">&mdash;</span> Python asyncio, concurrency control, semaphores, circuit breakers; REST clients with exponential backoff and jitter, token refresh, rate-limit handling, pagination normalization; SQLite indexing, atomic build patterns, schema versioning; C extensions via ctypes with NumPy fallback; client-server and socket programming</div>
+    <div class="bring-item"><span class="term">Low-level & security</span> <span class="sep">&mdash;</span> 8086 and AArch64 assembly, OS fundamentals, memory management; reverse engineering and binary analysis (IDA Pro); protocol and packet inspection (Wireshark, Fiddler); least-privilege and read-only architecture design</div>
+    <div class="bring-item"><span class="term">Languages & tools</span> <span class="sep">&mdash;</span> Python, C, C++, Assembly, Java, JavaScript, Node.js | Git, pytest, Docker, GitHub Actions, systemd, Wireshark, IDA Pro, Fiddler | Linux, macOS, Windows</div>
 </section>
-
-
 <section>
-    <h3>Education</h3>
-    
-    <p><strong>Magshimim National Cyber Program</strong>, Israel National Cyber Directorate, 2021-Present</p>
-    <ul>
-        
-        <li>Elite cyber training program for gifted students
-            
-            <ul>
-                
-                <li>First Year Average: 97.5</li>
-                
-                <li>Second Year Average: 99.7</li>
-                
-                <li>Focus: Algorithms, Low-level programming, Networks, Cyber warfare</li>
-                
-                <li>Participant in national-level capture-the-flag (CTF) competition stage</li>
-                
-            </ul>
-            
-        </li>
-        
-    </ul>
-    
-    <p><strong>High School Diploma</strong>, High School, 2027 (Expected)</p>
-    <ul>
-        
-        <li>Excellence Track
-            
-            <ul>
-                
-                <li>Overall Average: 95+</li>
-                
-                <li>Computer Science (5 units): 100</li>
-                
-            </ul>
-            
-        </li>
-        
-    </ul>
-    
-    <p><strong>Academy in High School</strong>, The Open University of Israel, 2023-Present</p>
-    <ul>
-        
-        <li>Early Academic Track
-            
-            <ul>
-                
-                <li>Accepted to B.Sc. Computer Science track during high school</li>
-                
-                <li>Successfully completed first-year mathematics-oriented course</li>
-                
-            </ul>
-            
-        </li>
-        
-    </ul>
-    
+    <h3 class="section">Projects</h3><div class="project">
+        <p class="project-title"><span class="name">Archon — Multi-Platform AI Assistant</span> <span class="sep">&mdash;</span> <span class="tech">Python (asyncio), SQLite, systemd, GitHub Actions, Telegram / WhatsApp / Gmail /
+Google Calendar APIs
+</span></p>
+        <p>Autonomous agent spanning WhatsApp, Telegram, and Gmail: ingests messages, triages them, and acts through a tool-calling loop — operated entirely from a Telegram bot. ~8,900 lines of Python.</p>
+        <ul class="bullets">
+            <li>Built a 78-tool agent catalog behind a scope-filtering registry that hides privileged tools from the model rather than relying on refusal, plus a confirmation gate routing every state-mutating action — send, email, calendar — through owner approval. New chats default to confirm-required.</li>
+            <li>Normalized five LLM provider backends — Anthropic content blocks, OpenAI and OpenRouter function-call JSON, Gemini Part objects, and a sandboxed Claude Code subprocess — behind one interface, with a per-call cost model and a hard daily budget gate. Applied prompt caching to the system block to transitively cache all 78 tool schemas.</li>
+            <li>Ran eight subsystems as independently supervised asyncio tasks with per-subsystem exponential backoff (5s→300s), so one failing integration cannot take down the others. All durable state in SQLite (WAL), making restarts safe by construction.</li>
+            <li>Deployed with zero inbound application ports on a systemd-sandboxed VM (ProtectSystem=strict, NoNewPrivileges), CI that gates on the test suite before deploying, and an egress monitor alerting on any unrecognized outbound host.</li>
+        </ul>
+    </div><div class="project">
+        <p class="project-title"><span class="name">Operating System Kernel</span> <span class="sep">&mdash;</span> <span class="tech">C/C++, AArch64 assembly, QEMU, Docker &mdash; in progress</span></p>
+        <p>Kernel written from scratch for 64-bit ARM (AArch64), targeting a working understanding of privilege rings, virtual memory, and the boot path.</p>
+        <ul class="bullets">
+            <li>Containerized the cross-compiler toolchain in Docker with QEMU for execution, giving reproducible builds across macOS and Windows and enabling CI checks on every commit.</li>
+        </ul>
+    </div><div class="project">
+        <p class="project-title"><span class="name">Client-Server Application</span> <span class="sep">&mdash;</span> <span class="tech">Python, sockets</span></p>
+        <p>Distributed system over raw sockets with a custom application-level protocol on TCP/IP, concurrent client handling, and structured error handling.</p>
+    </div><div class="project">
+        <p class="project-title"><span class="name">Retail Price Scraper</span> <span class="sep">&mdash;</span> <span class="tech">Python, web scraping</span></p>
+        <p>Reverse-engineered web requests to work around anti-scraping measures, with data normalization and structured storage for analysis.</p>
+    </div>
 </section>
-
+<section>
+    <h3 class="section">Education</h3><div class="edu">
+        <p class="edu-line"><span class="name">Magshimim National Cyber Program</span> <span class="sep">&mdash;</span> Israel National Cyber Directorate <span class="sep">|</span> <span class="dates">2021 – Present</span></p>
+        <p>Elite cyber training program for gifted students; currently in the advanced Magshimim Plus track. Focus on algorithms, low-level programming, networks, and cyber warfare. First-year average 97.5, second-year average 99.7. Reached the national capture-the-flag competition stage.</p>
+    </div><div class="edu">
+        <p class="edu-line"><span class="name">High School Diploma</span> <span class="sep">&mdash;</span> Excellence Track <span class="sep">|</span> <span class="dates">Expected 2027</span></p>
+        <p>Overall average 95+. Computer Science (5 units): 100.</p>
+    </div>
+</section>
+<section>
+    <h3 class="section">Languages</h3>
+    <p class="languages-line">Russian — native · Hebrew — native · English — fluent, and my day-to-day working language</p>
+</section>
 </body>
 </html>
