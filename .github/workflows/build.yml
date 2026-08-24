@@ -1,4 +1,14 @@
-name: Build Resume PDFs
+# Static deploy (2026-08-25). The committed index.html and PDFs ARE the site.
+#
+# The previous workflow rebuilt index.html and the PDFs from this repo's resume.yaml on
+# every push — which silently overwrote the canonical files the first time they were
+# published from outside: the site kept serving the old resume while the push that
+# updated it showed green. The render source of truth now lives in the jobpipe
+# pipeline (userdata/profile/master-resume.yaml); this repo only hosts the output.
+# create_pdf.py / resume.yaml / resume.html.template remain in-tree as the retired
+# toolchain, deliberately not executed.
+
+name: Deploy Resume Site
 
 on:
   push:
@@ -7,64 +17,28 @@ on:
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Install system deps for WeasyPrint
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            libcairo2 \
-            libpango-1.0-0 \
-            libpangocairo-1.0-0 \
-            libgdk-pixbuf2.0-0 \
-            libffi-dev \
-            shared-mime-info \
-            libjpeg-turbo8 \
-            libopenjp2-7 \
-            libtiff6
-
-      - name: Install Python deps
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Build PDFs
-        run: python create_pdf.py
-
-      - name: Upload Pages artifact
+      - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    permissions:
-      pages: write
-      id-token: write
-
-    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
