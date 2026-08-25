@@ -6,147 +6,250 @@
     <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
     <title>Nachum Getzel Elkind Resume</title>
     <style>
-/* The single-resume design (2026-08-25), rebuilt to reproduce the user's canonical PDF
-   ("Resume (5)"): A4, Carlito/Calibri, navy #1F3352 headings with a full-width rule,
-   tight bullet rhythm. Color and metrics were sampled from the PDF's own render, not
-   eyeballed. The PDF is produced by Chromium print on THIS design, so screen and print
-   rules live together here. */
-
-:root {
-    --navy: #1F3352;
-    --rule: #293C5A;
-    --ink: #111111;
-    --muted: #444444;
-    --faint: #666666;
+@page {
+    size: auto;
+    margin: 0;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+@media print {
+    @page {
+        size: auto;
+        margin: 0.5in; /* Minimal margins */
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Hide UI elements */
+    .download-btn, .no-print {
+        display: none !important;
+    }
+}
+
+.button-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    z-index: 9999;
+}
+
+.download-btn {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px; /* Space between icon and text */
+}
+
+.printable-btn {
+    background-color: #2196F3; /* Blue for printable */
+}
+
+.printable-btn:hover {
+    background-color: #1976D2;
+}
+
+.pdf-btn {
+    background-color: #4CAF50; /* Green for PDF */
+}
+
+.pdf-btn:hover {
+    background-color: #45a049;
+}
+
+/* Hide buttons during print */
+@media print {
+    .button-container {
+        display: none !important;
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .button-container {
+        flex-direction: column;
+        gap: 5px;
+        top: 10px;
+        right: 10px;
+    }
+
+    .download-btn {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+}
 
 body {
-    font-family: Carlito, Calibri, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    font-size: 10.3pt;
-    line-height: 1.22;
-    color: var(--ink);
-    background: #ffffff;
-    max-width: 21cm;
-    margin: 0 auto;
-    padding: 7mm 12.5mm 10mm;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    max-width: 100%;      /* Never exceed viewport width */
+    width: auto;          /* Allow width to adapt */
+    margin: 0 10px;       /* Center content */
+    padding: 2rem;        /* Responsive padding */
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
-/* ---------------------------------------------------------------- header */
-header { text-align: center; margin-bottom: 2pt; }
-
-header h1 {
-    font-size: 19.5pt;
-    font-weight: 700;
-    color: var(--navy);
-    letter-spacing: 0.2pt;
+/*
+.download-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    z-index: 9999;
 }
+
+.download-btn:hover {
+    background-color: #45a049;
+}
+*/
+
+/* For sections/containers */
+.container, section {
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+    border-bottom: none;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.3em;
+    color: #4CAF50;
+    margin: 10px 0 20px 0;
+    font-weight: normal;
+}
+
+.contact {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.testimonial {
+    font-style: italic;
+    color: #555;
+    border-left: 4px solid #4CAF50;
+    margin: 2em 0;
+    padding-left: 1em;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #4CAF50;
+    border-bottom: 1px solid #4CAF50;
+    padding-bottom: 5px;
+}
+
+ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 0.7em;
+}
+
+a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ------------------------------------------------------------------------------
+   Additions for the 2026-08-25 canonical-resume sections (experience groups,
+   what-i-bring, languages), styled in the SAME idiom as the rules above — this
+   file is delkind's original resume stylesheet (the user's preferred, more
+   readable design; byte-identical copies live in father_Dad/ and the resume
+   repo), and these rules only extend it to the new section shapes. The text
+   itself is the canonical (5) resume; only the web clothing is delkind's. */
 
 .tagline {
-    font-size: 11.5pt;
-    color: #333333;
-    margin-top: 2pt;
+    /* Same voice as his h2 subtitle: green, light, roomy. */
+    font-size: 1.3em;
+    color: #4CAF50;
+    margin: 10px 0 10px 0;
+    font-weight: normal;
 }
 
 .contact-line {
-    font-size: 10pt;
-    color: var(--muted);
-    margin-top: 2pt;
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 10px;
 }
-.contact-line a { color: var(--muted); text-decoration: none; }
+.contact-line a { color: #4CAF50; }
 
-/* --------------------------------------------------------------- sections */
-section { margin-top: 5pt; }
-
-/* Every section heading gets the canonical treatment — including the legacy macros'
-   bare <h3>, so old-schema renders inherit the new look instead of a mismatched one. */
-section > h3 {
-    font-size: 10.5pt;
-    font-weight: 700;
-    color: var(--navy);
-    text-transform: uppercase;
-    letter-spacing: 1.6pt;
-    border-bottom: 1.2pt solid var(--rule);
-    padding-bottom: 2.5pt;
-    margin-bottom: 5pt;
-}
+.role-line { margin: 0 0 0.5em 0; }
+.role-line .role { font-weight: bold; }
+.role-line .dates { color: #555; font-style: italic; }
+.sep { color: #999; }
 
 h4.group {
-    font-size: 10.6pt;
-    font-weight: 700;
-    color: var(--navy);
-    margin-top: 4pt;
-    margin-bottom: 1.5pt;
+    color: #333;
+    margin: 1em 0 0.4em 0;
+    font-size: 1.05em;
 }
 
-p { margin-bottom: 2.5pt; }
+/* The new bullet lists follow his plain list style, not a custom glyph. */
+ul.bullets { list-style: disc; padding-left: 20px; margin: 0 0 0.7em 0; }
+ul.bullets li { padding-left: 0; position: static; margin-bottom: 0.7em; }
+ul.bullets li::before { content: none; }
+ul.bullets li .lead { font-weight: bold; }
 
-/* ------------------------------------------------------------- experience */
-.role-line { margin-bottom: 2pt; }
-.role-line .role { font-weight: 700; }
-.role-line .dates { color: var(--faint); font-style: italic; }
-.sep { color: var(--faint); }
+.stack-line { margin-top: 0.5em; }
 
-ul.bullets { list-style: none; margin: 0 0 3pt 0; }
-ul.bullets li {
-    padding-left: 13pt;
-    position: relative;
-    margin-bottom: 1.8pt;
-}
-ul.bullets li::before {
-    content: "\2022";
-    position: absolute;
-    left: 4pt;
-    color: var(--ink);
-}
-ul.bullets li .lead { font-weight: 700; }
+.bring-item { margin-bottom: 0.7em; }
+.bring-item .term { font-weight: bold; }
 
-.stack-line { margin-top: 2pt; }
+.project { margin-bottom: 1em; }
+.project-title { margin-bottom: 0.3em; }
+.project-title .name { font-weight: bold; }
+.project-title .tech { color: #555; font-style: italic; }
 
-/* ----------------------------------------------------------- what i bring */
-.bring-item { padding-left: 9pt; margin-bottom: 2pt; }
-.bring-item .term { font-weight: 700; }
+.edu { margin-bottom: 0.8em; }
+.edu-line { margin-bottom: 0.3em; }
+.edu-line .name { font-weight: bold; }
+.edu-line .dates { color: #555; font-style: italic; }
 
-/* --------------------------------------------------------------- projects */
-.project { margin-top: 4.5pt; }
-.project-title .name { font-weight: 700; }
-.project-title .tech { color: var(--faint); font-style: italic; }
+.languages-line { margin: 0; }
 
-/* -------------------------------------------------------------- education */
-.edu { margin-top: 4pt; }
-.edu-line .name { font-weight: 700; }
-.edu-line .dates { color: var(--faint); font-style: italic; }
-
-/* -------------------------------------------------------------- languages */
-.languages-line { margin-top: 1pt; }
-
-/* -------------------------------------------------- legacy schema support */
-/* The pre-2026-08-25 sections (technical_expertise, current_position, ...) keep
-   rendering for old YAML fixtures and any future variant work. They inherit the new
-   typography; only their structural rules are kept. */
-h4 { color: var(--navy); }
-section > ul, section ul.plain { margin-left: 16pt; margin-bottom: 3pt; }
-.button-container { text-align: right; margin-bottom: 6pt; }
-.download-btn {
-    font-size: 9.5pt; color: var(--navy); text-decoration: none;
-    border: 1pt solid var(--navy); border-radius: 3pt; padding: 2pt 8pt;
-}
-.testimonial { font-style: italic; color: var(--muted); margin-top: 4pt; }
-
-/* ------------------------------------------------------------------ print */
-@page { size: A4; margin: 0; }
-@media print {
-    body { padding: 7mm 12.5mm 8mm; max-width: none; }
-    .button-container { display: none; }
-    /* NEVER `break-inside: avoid` on a whole section: the Experience section is nearly
-       a page long, so "avoid" can only be honored by shoving the section to a fresh
-       page — that single rule turned this two-page resume into four. Keep atomic units
-       small: a bullet, one project, one education entry, a heading with its follower. */
-    ul.bullets li, .project, .edu, .bring-item { break-inside: avoid-page; }
-    section > h3, h4.group { break-after: avoid-page; }
-    a { color: inherit; }
-}
+/* Readable line length on large screens; his original let text run full-width. */
+body { max-width: 950px; margin: 0 auto; }
 
     </style>
 </head>
