@@ -67,46 +67,46 @@ experience:
               confidence level estimates.
           - lead: Documentation
             text: |
-            Built a 37-file internal knowledge base and two agent skills make the system
-            handoff-ready so it is possible to drill down into the reasoning behind the decisions 
-            the system makes.
+              Built a 37-file internal knowledge base and two agent skills make the system
+              handoff-ready so it is possible to drill down into the reasoning behind the decisions 
+              the system makes.
       - heading: Engineering
         bullets:
           - lead: Layered Analysis Engine 
             text: |
-            Architected a four-layer analysis engine (data, comparison, detection,
-            orchestration) with enforced import boundaries and 16 independent detectors:
-            6 LLM-backed, 10 fully deterministic. ~1,100 automated tests back it,
-            including false-positive regression suites where every adjudicated false
-            positive is encoded so it can never reappear.
+              Architected a four-layer analysis engine (data, comparison, detection,
+              orchestration) with enforced import boundaries and 16 independent detectors:
+              6 LLM-backed, 10 fully deterministic. ~1,100 automated tests back it,
+              including false-positive regression suites where every adjudicated false
+              positive is encoded so it can never reappear.
           - lead: Layered Analysis Engine 
             text: |
-            Built a "propose, verify, revise, revert" loop that makes LLM-authored advice
-            safe to ship. The model returns structured JSON; nine deterministic
-            verifiers check every claim against platform ground truth; failures get one
-            targeted revision round, then fall back to safe generic text. Every number
-            in the final output is computed in code and is reproducible.
+              Built a "propose, verify, revise, revert" loop that makes LLM-authored advice
+              safe to ship. The model returns structured JSON; nine deterministic
+              verifiers check every claim against platform ground truth; failures get one
+              targeted revision round, then fall back to safe generic text. Every number
+              in the final output is computed in code and is reproducible.
           - lead: Layered Analysis Engine 
             text: 
-            Designed the anonymization layer that makes LLM use viable in a security
-            product: deterministic regex masking with stable hash pseudonyms, a payload
-            contract enforced at type-check and at runtime so no client can skip
-            anonymization, and a per-run deny-list checked at a single chokepoint that
-            aborts on any leak. An offline audit tool proves compliance across a full
-            customer environment with zero LLM calls.
+              Designed the anonymization layer that makes LLM use viable in a security
+              product: deterministic regex masking with stable hash pseudonyms, a payload
+              contract enforced at type-check and at runtime so no client can skip
+              anonymization, and a per-run deny-list checked at a single chokepoint that
+              aborts on any leak. An offline audit tool proves compliance across a full
+              customer environment with zero LLM calls.
           - lead: Layered Analysis Engine 
             text: | 
-            Implemented an entity-inventory query layer and tool-calling loop that
-            ground the model’s answers in real data: a lazily-built SQLite index over
-            compressed NDJSON, a boolean expression-tree selector parser, and five
-            read-only tools exposed in-process and over MCP (JSON-RPC 2.0). When the
-            index cannot evaluate a query, the answer is unknown. A misleading 0 would
-            be worse.
+              Implemented an entity-inventory query layer and tool-calling loop that
+              ground the model’s answers in real data: a lazily-built SQLite index over
+              compressed NDJSON, a boolean expression-tree selector parser, and five
+              read-only tools exposed in-process and over MCP (JSON-RPC 2.0). When the
+              index cannot evaluate a query, the answer is unknown. A misleading 0 would
+              be worse.
           - lead: Layered Analysis Engine 
             text: |
-            Optimized the comparison hot path with a C extension (bitset Jaccard,
-            popcount intrinsics, size pre-filter), chosen by benchmarking 10
-            implementations against each other for identical results.
+              Optimized the comparison hot path with a C extension (bitset Jaccard,
+              popcount intrinsics, size pre-filter), chosen by benchmarking 10
+              implementations against each other for identical results.
     stack: Python (asyncio, httpx, Pydantic, pytest), C, SQLite, Bash, Git, MCP, LLM APIs
 
 what_i_bring:
