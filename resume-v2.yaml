@@ -79,14 +79,14 @@ experience:
               6 LLM-backed, 10 fully deterministic. ~1,100 automated tests back it,
               including false-positive regression suites where every adjudicated false
               positive is encoded so it can never reappear.
-          - lead: Layered Analysis Engine 
+          - lead: Deterministic Verification of the LLM Output 
             text: |
               Built a "propose, verify, revise, revert" loop that makes LLM-authored advice
               safe to ship. The model returns structured JSON; nine deterministic
               verifiers check every claim against platform ground truth; failures get one
               targeted revision round, then fall back to safe generic text. Every number
               in the final output is computed in code and is reproducible.
-          - lead: Layered Analysis Engine 
+          - lead: Anonymization Layer 
             text: |
               Designed the anonymization layer that makes LLM use viable in a security
               product: deterministic regex masking with stable hash pseudonyms, a payload
@@ -94,7 +94,7 @@ experience:
               anonymization, and a per-run deny-list checked at a single chokepoint that
               aborts on any leak. An offline audit tool proves compliance across a full
               customer environment with zero LLM calls.
-          - lead: Layered Analysis Engine 
+          - lead: LLM-accessible Data Layer 
             text: | 
               Implemented an entity-inventory query layer and tool-calling loop that
               ground the model’s answers in real data: a lazily-built SQLite index over
@@ -102,7 +102,7 @@ experience:
               read-only tools exposed in-process and over MCP (JSON-RPC 2.0). When the
               index cannot evaluate a query, the answer is unknown. A misleading 0 would
               be worse.
-          - lead: Layered Analysis Engine 
+          - lead: Performance Optimizations
             text: |
               Optimized the comparison hot path with a C extension (bitset Jaccard,
               popcount intrinsics, size pre-filter), chosen by benchmarking 10
