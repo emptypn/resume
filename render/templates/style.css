@@ -1,0 +1,260 @@
+@page {
+    size: auto;
+    margin: 0;
+}
+
+@media print {
+    @page {
+        size: auto;
+        margin: 0.5in; /* Minimal margins */
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Hide UI elements */
+    .download-btn, .no-print {
+        display: none !important;
+    }
+}
+
+.button-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    z-index: 9999;
+}
+
+.download-btn {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px; /* Space between icon and text */
+}
+
+.printable-btn {
+    background-color: #2196F3; /* Blue for printable */
+}
+
+.printable-btn:hover {
+    background-color: #1976D2;
+}
+
+.pdf-btn {
+    background-color: #4CAF50; /* Green for PDF */
+}
+
+.pdf-btn:hover {
+    background-color: #45a049;
+}
+
+/* Hide buttons during print */
+@media print {
+    .button-container {
+        display: none !important;
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .button-container {
+        flex-direction: column;
+        gap: 5px;
+        top: 10px;
+        right: 10px;
+    }
+
+    .download-btn {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    max-width: 100%;      /* Never exceed viewport width */
+    width: auto;          /* Allow width to adapt */
+    margin: 0 10px;       /* Center content */
+    padding: 2rem;        /* Responsive padding */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/*
+.download-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    z-index: 9999;
+}
+
+.download-btn:hover {
+    background-color: #45a049;
+}
+*/
+
+/* For sections/containers */
+.container, section {
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+    border-bottom: none;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.3em;
+    color: #4CAF50;
+    margin: 10px 0 20px 0;
+    font-weight: normal;
+}
+
+.contact {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.testimonial {
+    font-style: italic;
+    color: #555;
+    border-left: 4px solid #4CAF50;
+    margin: 2em 0;
+    padding-left: 1em;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #4CAF50;
+    border-bottom: 1px solid #4CAF50;
+    padding-bottom: 5px;
+}
+
+ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 0.7em;
+}
+
+a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ------------------------------------------------------------------------------
+   Additions for the 2026-08-25 canonical-resume sections (experience groups,
+   what-i-bring, languages), styled in the SAME idiom as the rules above — this
+   file is delkind's original resume stylesheet (the user's preferred, more
+   readable design; byte-identical copies live in father_Dad/ and the resume
+   repo), and these rules only extend it to the new section shapes. The text
+   itself is the canonical (5) resume; only the web clothing is delkind's. */
+
+.tagline {
+    /* Same voice as his h2 subtitle: green, light, roomy. */
+    font-size: 1.3em;
+    color: #4CAF50;
+    margin: 10px 0 10px 0;
+    font-weight: normal;
+}
+
+.contact-line {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 10px;
+}
+.contact-line a { color: #4CAF50; }
+
+.role-line { margin: 0 0 0.5em 0; }
+.role-line .role { font-weight: bold; }
+.role-line .dates { color: #555; font-style: italic; }
+.sep { color: #999; }
+
+h4.group {
+    color: #333;
+    margin: 1em 0 0.4em 0;
+    font-size: 1.05em;
+}
+
+/* The new bullet lists follow his plain list style, not a custom glyph. */
+ul.bullets { list-style: disc; padding-left: 20px; margin: 0 0 0.7em 0; }
+ul.bullets li { padding-left: 0; position: static; margin-bottom: 0.7em; }
+ul.bullets li::before { content: none; }
+ul.bullets li .lead { font-weight: bold; }
+
+.stack-line { margin-top: 0.5em; }
+
+.bring-item { margin-bottom: 0.7em; }
+.bring-item .term { font-weight: bold; }
+
+.project { margin-bottom: 1em; }
+.project-title { margin-bottom: 0.3em; }
+.project-title .name { font-weight: bold; }
+.project-title .tech { color: #555; font-style: italic; }
+
+.edu { margin-bottom: 0.8em; }
+.edu-line { margin-bottom: 0.3em; }
+.edu-line .name { font-weight: bold; }
+.edu-line .dates { color: #555; font-style: italic; }
+
+.languages-line { margin: 0; }
+
+/* Readable line length on large screens; his original let text run full-width. */
+body { max-width: 950px; margin: 0 auto; }
+
+/* ------------------------------------------------------------------------------
+   Compact print overrides for the v2 draft: the web layout above prints airy
+   (4 pages); these bring the PDF to ~2 pages without touching the screen look. */
+@media print {
+  body { font-size: 12px; line-height: 1.35; padding: 0; max-width: 100%; }
+  h1 { font-size: 1.9em; }
+  .tagline, h2 { font-size: 1.15em; margin: 4px 0; }
+  header { padding-bottom: 6px; margin-bottom: 8px; }
+  section { margin-bottom: 9px; }
+  h3 { margin: 8px 0 5px 0; padding-bottom: 2px; }
+  h4.group { margin: 0.5em 0 0.25em 0; }
+  li, ul.bullets li, .bring-item { margin-bottom: 0.4em; }
+  .project { margin-bottom: 0.5em; }
+  .edu { margin-bottom: 0.5em; }
+}

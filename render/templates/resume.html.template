@@ -1,0 +1,267 @@
+{#- Vendored from PycharmProjects/resume/resume.html.template, with the fixes recorded in
+    docs/research-notes.md ("Existing resume renderer"):
+
+    * the stylesheet is inlined (`inline_css`) rather than <link>ed, so a variant is one
+      self-contained file that can be published, mailed or opened from disk unchanged;
+    * `summary` and `project.description` go through the `richtext` filter instead of
+      being interpolated raw — upstream collapsed their "- " lines into one paragraph;
+    * sections render in `section_order`, so a variant can lead with the section that
+      matters for the posting;
+    * every page carries robots noindex (the variant URLs are unguessable by design and
+      must never be indexed — docs/decisions.md D4/D13).
+
+    Autoescape stays OFF, as upstream: resume YAML legitimately carries inline markup
+    (<em>, <a href> around patents and publications). tailor/factguard.py compensates by
+    rejecting script/handler markup before anything reaches this template.
+-#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <title>{{ header.name }} Resume</title>
+    <style>
+{{ inline_css }}
+    </style>
+</head>
+<body>
+{%- if pdf_link %}
+<div class="button-container">
+    <a href="{{ pdf_link }}" class="download-btn pdf-btn" target="_blank" rel="noopener noreferrer" aria-label="View PDF">View PDF</a>
+</div>
+{%- endif %}
+<header>
+    <h1>{{ header.name }}</h1>
+    {%- if header.tagline is defined and header.tagline %}
+    {#- The 2026-08-25 single-resume design: one centered tagline, one centered
+        dot-separated contact line, exactly as the canonical PDF lays them out. #}
+    <div class="tagline">{{ header.tagline }}</div>
+    {%- if header.contact_items is defined and header.contact_items %}
+    <div class="contact-line">
+        {%- for item in header.contact_items -%}
+            {%- if item.href is defined and item.href %}<a href="{{ item.href }}">{{ item.text }}</a>{% else %}{{ item.text }}{% endif %}
+            {%- if not loop.last %} &middot; {% endif -%}
+        {%- endfor %}
+    </div>
+    {%- endif %}
+    {%- else %}
+    {%- if header.title is defined and header.title %}
+    <h2>{{ header.title }}</h2>
+    {%- endif %}
+    {%- if header.contact is defined and header.contact %}
+    <div class="contact">
+        <div>Email: <a href="mailto:{{ header.contact.email }}">{{ header.contact.email }}</a>{% if header.contact.linkedin is defined and header.contact.linkedin %} | <a href="{{ header.contact.linkedin }}" target="_blank" rel="noopener noreferrer">{{ header.contact.linkedin }}</a>{% endif %}</div>
+        <div>{% if header.contact.location is defined and header.contact.location %}Location: {{ header.contact.location }}{% endif %}{% if header.contact.phone is defined and header.contact.phone %} | Phone: {{ header.contact.phone }}{% endif %}</div>
+    </div>
+    {%- endif %}
+    {%- endif %}
+    {%- if header.testimonial is defined and header.testimonial %}
+    <div class="testimonial">
+        {{ header.testimonial.text }}<br><br>— {{ header.testimonial.author }}
+    </div>
+    {%- endif %}
+</header>
+
+{%- macro section_summary() %}
+{%- if summary is defined and summary %}
+<section>
+    <h3>Summary</h3>
+    {{ summary | richtext }}
+</section>
+{%- endif %}
+{%- endmacro %}
+
+{%- macro section_technical_expertise() %}
+{%- if technical_expertise is defined and technical_expertise %}
+<section>
+    <h3>Technical Expertise</h3>
+    {%- for subsection, items in technical_expertise.items() %}
+    <h4>{{ subsection }}</h4>
+    {{ items | richtext }}
+    {%- endfor %}
+</section>
+{%- endif %}
+{%- endmacro %}
+
+{%- macro position_block(position) %}
+    <p><strong>{{ position.title }}</strong>, {{ position.company }}{% if position.dates is defined and position.dates %} ({{ position.dates }}){% endif %}</p>
+    {%- if position.achievements is defined and position.achievements %}
+    {{ position.achievements | richtext }}
+    {%- endif %}
+{%- endmacro %}
+
+{%- macro section_current_position() %}
+{%- if current_position is defined and current_position %}
+<section>
+    <h3>Current Position</h3>
+    {{- position_block(current_position) }}
+</section>
+{%- endif %}
+{%- endmacro %}
+
+{%- macro section_past_positions() %}
+{%- if past_positions is defined and past_positions %}
+<section>
+    <h3>Past Positions</h3>
+    {%- for position in past_positions %}
+    {{- position_block(position) }}
+    {%- endfor %}
+</section>
+{%- endif %}
+{%- endmacro %}
+
+{%- macro section_experience() %}
+{#- The canonical-PDF experience layout: role line, intro paragraph, bold-lead bullet
+    groups under navy group headings, then a Stack line. -#}
+{%- if experience is defined and experience %}
+<section>
+    <h3 class="section">Experience</h3>
+    {%- for role in experience %}
+    <p class="role-line"><span class="role">{{ role.title }}</span> <span class="sep">&mdash;</span> {{ role.org }} <span class="sep">|</span> <span class="dates">{{ role.dates }}</span></p>
+    {%- if role.intro is defined and role.intro %}
+    <p>{{ role.intro | richtext_inline }}</p>
+    {%- endif %}
+    {%- for group in role.groups | default([]) %}
+    {%- if group.heading is defined and group.heading %}
+    <h4 class="group">{{ group.heading }}</h4>
+    {%- endif %}
+    <ul class="bullets">
+        {%- for b in group.bullets %}
+        {%- if b is mapping %}
+        <li><span class="lead">{{ b.lead }}</span> {{ b.text | richtext_inline }}</li>
+        {%- else %}
+        <li>{{ b | richtext_inline }}</li>
+        {%- endif %}
+        {%- endfor %}
+    </ul>
+    {%- endfor %}
+    {%- if role.stack is defined and role.stack %}
+    <p class="stack-line"><strong>Stack:</strong> {{ role.stack }}</p>
+    {%- endif %}
+    {%- endfor %}
+</section>
+{%- endif %}
+{%- endmacro %}
+
+{%- macro section_what_i_bring() %}
+{%- if what_i_bring is defined and what_i_bring %}
+<section>
+    <h3 class="section">What I Bring</h3>
+    {%- for group in what_i_bring %}
+    {%- if group.heading is defined and group.heading %}
+    <h4 class="group">{{ group.heading }}</h4>
+    {%- endif %}
+    {%- for item in group['items'] %}
+    <div class="bring-item"><span class="term">{{ item.term }}</span> <span class="sep">&mdash;</span> {{ item.text | richtext_inline }}</div>
+    {%- endfor %}
+    {%- endfor %}
+</section>
+{%- endif %}
+{%- endmacro %}
+
+{%- macro section_languages() %}
+{%- if languages is defined and languages %}
+<section>
+    <h3 class="section">Languages</h3>
+    <p class="languages-line">{{ languages | richtext_inline }}</p>
+</section>
+{%- endif %}
+{%- endmacro %}
+
+{%- macro section_projects() %}
+{%- if projects is defined and projects %}
+<section>
+    <h3 class="section">Projects</h3>
+    {%- for project in projects %}
+    {%- if project.tech is defined and project.tech %}
+    {#- Canonical-PDF project shape: bold name — italic tech list, optional italic
+        status note, intro paragraph, optional plain bullets. -#}
+    <div class="project">
+        <p class="project-title"><span class="name">{{ project.title }}</span> <span class="sep">&mdash;</span> <span class="tech">{{ project.tech }}{% if project.note is defined and project.note %} &mdash; {{ project.note }}{% endif %}</span></p>
+        {%- if project.intro is defined and project.intro %}
+        <p>{{ project.intro | richtext_inline }}</p>
+        {%- endif %}
+        {%- if project.bullets is defined and project.bullets %}
+        <ul class="bullets">
+            {%- for b in project.bullets %}
+            <li>{{ b | richtext_inline }}</li>
+            {%- endfor %}
+        </ul>
+        {%- endif %}
+    </div>
+    {%- else %}
+    <p><strong>{{ project.title }}</strong>{% if project.technologies is defined and project.technologies %} | {{ project.technologies }}{% endif %}</p>
+    {%- if project.description is defined and project.description %}
+    {{ project.description | richtext }}
+    {%- endif %}
+    {%- endif %}
+    {%- endfor %}
+</section>
+{%- endif %}
+{%- endmacro %}
+
+{%- macro section_patents_publications() %}
+{%- if patents_publications is defined and patents_publications %}
+<section>
+    <h3>Patents &amp; Publications</h3>
+    {{ patents_publications | richtext }}
+</section>
+{%- endif %}
+{%- endmacro %}
+
+{%- macro section_education() %}
+{%- if education is defined and education %}
+<section>
+    <h3 class="section">Education</h3>
+    {%- for edu in education %}
+    {%- if edu.title is defined and edu.title %}
+    {#- Canonical-PDF education shape: bold title — org | italic dates, then prose. -#}
+    <div class="edu">
+        <p class="edu-line"><span class="name">{{ edu.title }}</span> <span class="sep">&mdash;</span> {{ edu.org }} <span class="sep">|</span> <span class="dates">{{ edu.dates }}</span></p>
+        {%- if edu.text is defined and edu.text %}
+        <p>{{ edu.text | richtext_inline }}</p>
+        {%- endif %}
+    </div>
+    {%- else %}
+    <p><strong>{{ edu.degree }}</strong>{% if edu.institution is defined and edu.institution %}, {{ edu.institution }}{% endif %}{% if edu.year is defined and edu.year %}, {{ edu.year }}{% endif %}</p>
+    {%- if edu.details is defined and edu.details %}
+    <ul>
+        {%- for detail in edu.details %}
+        {%- if detail is string %}
+        <li>{{ detail }}</li>
+        {%- else %}
+        <li>{{ detail.text }}
+            {%- if detail.sublist is defined and detail.sublist %}
+            <ul>
+                {%- for subitem in detail.sublist %}
+                <li>{{ subitem }}</li>
+                {%- endfor %}
+            </ul>
+            {%- endif %}
+        </li>
+        {%- endif %}
+        {%- endfor %}
+    </ul>
+    {%- endif %}
+    {%- endif %}
+    {%- endfor %}
+</section>
+{%- endif %}
+{%- endmacro %}
+
+{%- for _section in section_order %}
+{%- if _section == 'summary' %}{{ section_summary() }}
+{%- elif _section == 'experience' %}{{ section_experience() }}
+{%- elif _section == 'what_i_bring' %}{{ section_what_i_bring() }}
+{%- elif _section == 'languages' %}{{ section_languages() }}
+{%- elif _section == 'technical_expertise' %}{{ section_technical_expertise() }}
+{%- elif _section == 'current_position' %}{{ section_current_position() }}
+{%- elif _section == 'past_positions' %}{{ section_past_positions() }}
+{%- elif _section == 'projects' %}{{ section_projects() }}
+{%- elif _section == 'patents_publications' %}{{ section_patents_publications() }}
+{%- elif _section == 'education' %}{{ section_education() }}
+{%- endif %}
+{%- endfor %}
+</body>
+</html>

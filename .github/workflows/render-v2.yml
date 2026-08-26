@@ -1,0 +1,61 @@
+# Renders resume-v2.pdf from resume-v2.yaml whenever the YAML (or the renderer)
+# changes on the resume-v2 branch, and commits the PDF back to that branch.
+#
+# Deliberately scoped so the 2026-08-25 static-deploy decision stays intact:
+#   * runs ONLY on the resume-v2 branch — never on master, so it can never race or
+#     overwrite the deployed site (build.yml deploys master as-is);
+#   * reads ONLY resume-v2.yaml and writes ONLY resume-v2.pdf — the canonical files
+#     (resume.yaml, index.html, Nachum_Getzel_Elkind_Resume.pdf) are not inputs or
+#     outputs of this job, so the old silently-overwritten-canonical bug cannot recur;
+#   * the bot's PDF-only commit does not match the paths filter (and GITHUB_TOKEN
+#     pushes don't retrigger workflows), so there is no render loop.
+
+name: Render resume v2
+
+on:
+  push:
+    branches: [ "resume-v2" ]
+    paths:
+      - resume-v2.yaml
+      - render/**
+      - .github/workflows/render-v2.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: render-v2
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install renderer dependencies
+        run: |
+          pip install jinja2 pyyaml playwright
+          playwright install --with-deps chromium
+
+      - name: Render PDF
+        run: python render/build.py
+
+      - name: Commit rendered PDF
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add resume-v2.pdf
+          if git diff --cached --quiet; then
+            echo "PDF unchanged, nothing to commit"
+          else
+            git commit -m "chore: render resume-v2.pdf from resume-v2.yaml"
+            git push
+          fi
