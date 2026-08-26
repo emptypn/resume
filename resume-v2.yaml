@@ -18,7 +18,7 @@ header:
     - text: 054-595-5698
 
 summary: |
-  At 18, I’m the sole developer, and in practice the product owner, of an LLM engine at
+  Presently I’m the sole developer, and in practice the product owner, of an LLM engine at
   XM Cyber that audits customers’ attack-path configurations for an enterprise security
   platform. I scoped what it does and built the verification and privacy layers that
   make it safe to run in customer environments. My background is low-level systems and
@@ -40,65 +40,70 @@ experience:
         bullets:
           - lead: Took an open-ended problem to a shipping product.
             text: |
-              The starting point was a vague complaint: customer attack scenarios
-              silently rot over time. I turned that into a defined product, including
-              what counts as a finding worth a security team’s attention and what the
-              system deliberately refuses to do.
+              Started from a vague complaint about customer attack scenarios
+              tending to silently rot over time. Turned that into a defined product, including
+              prioritizng findings from the security team’s perspective defining the constraints 
+              which the system has to comply to.
           - lead: Made the scoping call that made adoption possible.
             text: |
-              I chose advisory-and-read-only over auto-remediation and backed it with a
-              five-layer structural guarantee that the system cannot modify customer
-              data. Less capability, but the trust that decision bought is what lets it
+              Chose advisory-and-read-only over auto-remediation and backed it with a
+              five-layer customer data safety guarantee. Decided to trade the  
+              capabilities for the confidence that enabled stakeholders to allow to
               run inside a customer environment.
-          - |
-            Deduplication, root-cause suppression, and confidence-based ranking collapse
-            two hundred symptoms of one cause into the handful of issues a team should
-            actually fix. Prioritization is the core product problem here, and I treated
-            it that way.
-          - lead: Wrote the output for its real audience.
+          - lead: Turned loads of data into actionable insights
+            text: |
+              Deduplication, root-cause suppression, and confidence-based ranking collapse
+              two hundred symptoms of one cause into the handful of issues a team should
+              actually fix. Prioritization is the core product problem here, and I treated
+              it that way.
+          - lead: Presentation targeted at the real audience.
             text: |
               A report-contract gate turns every class of bad output found in manual
               review into a deterministic pre-publish check. A jargon linter keeps
               findings actionable for non-technical stakeholders.
-          - lead: Built the measurement, then reported it honestly.
+          - lead: Accuracy KPIs and Thresholds
             text: |
-              I defined the evaluation before claiming a result: ~88% precision on the
-              high-confidence tier, and a 25-run cross-model comparison I published as
-              “no statistically significant winner” (p≈0.33) with the prompt-tuning
-              confound documented, rather than picking the flattering read.
-          - |
-            A 37-file internal knowledge base and two agent skills make the system
-            handoff-ready: the next engineer can audit why it judged something the way
-            it did.
+              Defined quantifiable accuracy KPIs and thresholds and made sure the results include
+              confidence level estimates.
+          - lead: Documentation
+            text: |
+            Built a 37-file internal knowledge base and two agent skills make the system
+            handoff-ready so it is possible to drill down into the reasoning behind the decisions 
+            the system makes.
       - heading: Engineering
         bullets:
-          - |
+          - lead: Layered Analysis Engine 
+            text: |
             Architected a four-layer analysis engine (data, comparison, detection,
             orchestration) with enforced import boundaries and 16 independent detectors:
             6 LLM-backed, 10 fully deterministic. ~1,100 automated tests back it,
             including false-positive regression suites where every adjudicated false
             positive is encoded so it can never reappear.
-          - |
-            Built a propose, verify, revise, revert loop that makes LLM-authored advice
+          - lead: Layered Analysis Engine 
+            text: |
+            Built a "propose, verify, revise, revert" loop that makes LLM-authored advice
             safe to ship. The model returns structured JSON; nine deterministic
             verifiers check every claim against platform ground truth; failures get one
             targeted revision round, then fall back to safe generic text. Every number
-            in the final output is computed in code.
-          - |
+            in the final output is computed in code and is reproducible.
+          - lead: Layered Analysis Engine 
+            text: 
             Designed the anonymization layer that makes LLM use viable in a security
             product: deterministic regex masking with stable hash pseudonyms, a payload
             contract enforced at type-check and at runtime so no client can skip
             anonymization, and a per-run deny-list checked at a single chokepoint that
             aborts on any leak. An offline audit tool proves compliance across a full
             customer environment with zero LLM calls.
-          - |
+          - lead: Layered Analysis Engine 
+            text: | 
             Implemented an entity-inventory query layer and tool-calling loop that
             ground the model’s answers in real data: a lazily-built SQLite index over
             compressed NDJSON, a boolean expression-tree selector parser, and five
             read-only tools exposed in-process and over MCP (JSON-RPC 2.0). When the
             index cannot evaluate a query, the answer is unknown. A misleading 0 would
             be worse.
-          - |
+          - lead: Layered Analysis Engine 
+            text: |
             Optimized the comparison hot path with a C extension (bitset Jaccard,
             popcount intrinsics, size pre-filter), chosen by benchmarking 10
             implementations against each other for identical results.
