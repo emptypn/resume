@@ -1,2 +1,4 @@
 .idea/
 .venv/
+render/build/
+__pycache__/
