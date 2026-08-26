@@ -251,69 +251,79 @@ ul.bullets li .lead { font-weight: bold; }
 /* Readable line length on large screens; his original let text run full-width. */
 body { max-width: 950px; margin: 0 auto; }
 
+/* ------------------------------------------------------------------------------
+   Compact print overrides for the v2 draft: the web layout above prints airy
+   (4 pages); these bring the PDF to ~2 pages without touching the screen look. */
+@media print {
+  body { font-size: 12px; line-height: 1.35; padding: 0; max-width: 100%; }
+  h1 { font-size: 1.9em; }
+  .tagline, h2 { font-size: 1.15em; margin: 4px 0; }
+  header { padding-bottom: 6px; margin-bottom: 8px; }
+  section { margin-bottom: 9px; }
+  h3 { margin: 8px 0 5px 0; padding-bottom: 2px; }
+  h4.group { margin: 0.5em 0 0.25em 0; }
+  li, ul.bullets li, .bring-item { margin-bottom: 0.4em; }
+  .project { margin-bottom: 0.5em; }
+  .edu { margin-bottom: 0.5em; }
+}
+
     </style>
 </head>
 <body>
 <div class="button-container">
-    <a href="Nachum_Getzel_Elkind_Resume.pdf" class="download-btn pdf-btn" target="_blank" rel="noopener noreferrer" aria-label="View PDF">View PDF</a>
+    <a href="resume.pdf" class="download-btn pdf-btn" target="_blank" rel="noopener noreferrer" aria-label="View PDF">View PDF</a>
 </div>
 <header>
     <h1>Nachum Getzel Elkind</h1>
-    <div class="tagline">Software Engineer & Product Owner  —  AI Systems | Cybersecurity</div>
+    <div class="tagline">Software Engineer  —  AI Systems | Cybersecurity</div>
     <div class="contact-line"><a href="mailto:nachumgetzel.elkind@gmail.com">nachumgetzel.elkind@gmail.com</a> &middot; <a href="https://github.com/ngelkind">github.com/ngelkind</a> &middot; <a href="https://www.linkedin.com/in/nachum-getzel-elkind-b072102b7">linkedin.com/in/nachum-getzel-elkind-b072102b7</a> &middot; Beit Shemesh, Israel &middot; 054-595-5698
     </div>
 </header>
 <section>
     <h3>Summary</h3>
-    <p>I build LLM systems that ship to real customers — and I own them end to end, from the problem to the report a security analyst actually reads. At XM Cyber I am the sole developer and de facto product owner of an AI analysis engine that audits customers’ attack-path configurations: I scoped what it should and shouldn’t do, defined what counts as a finding worth surfacing, and built the verification and privacy layers that made it safe to put in front of enterprise security teams. I care most about the part of the work where product judgment and engineering meet: deciding what to ship, what to leave out, and how to prove it works. Background in low-level systems and reverse engineering from Israel’s Magshimim National Cyber Program.</p>
+    <p>Presently I’m the sole developer, and in practice the product owner, of an LLM engine at XM Cyber that audits customers’ attack-path configurations for an enterprise security platform. I scoped what it does and built the verification and privacy layers that make it safe to run in customer environments. My background is low-level systems and reverse engineering from Israel’s Magshimim National Cyber Program.</p>
 </section>
 <section>
     <h3 class="section">Experience</h3>
     <p class="role-line"><span class="role">Solutions Developer</span> <span class="sep">&mdash;</span> XM Cyber, Tel Aviv <span class="sep">|</span> <span class="dates">April 2026 – Present</span></p>
-    <p>Sole developer and product owner of an LLM-powered configuration-hygiene system for an enterprise attack-path management platform. It audits every attack scenario in a customer environment, finds the ones that are broken, redundant, misnamed, or silently producing nothing, and generates prioritized, environment-specific remediation advice. Also shipped two AI agents into the product. Advisory-only by design; currently migrating from proof of concept into the production codebase.</p>
+    <p>Sole developer of an LLM-powered configuration-hygiene system for an enterprise attack-path management platform. It audits every attack scenario in a customer environment, flags the ones that are broken, redundant, misnamed, or silently producing nothing, and generates prioritized, environment-specific remediation advice. Advisory-only by design. Also shipped two AI agents into the product; currently migrating the system from proof of concept into the production codebase.</p>
     <h4 class="group">Product ownership</h4>
     <ul class="bullets">
-        <li><span class="lead">Took an open-ended problem to a shipping product.</span> Started from a vague complaint — customer attack scenarios silently rot over time — and turned it into a defined product: what counts as a finding, which findings deserve a security team’s attention, and what the system deliberately refuses to do.</li>
-        <li><span class="lead">Made the scoping call that made adoption possible.</span> Chose advisory-and-read-only over auto-remediation, then backed it with a five-layer structural guarantee that the system cannot modify customer data — trading capability for the trust required to run inside a customer environment.</li>
-        <li><span class="lead">Treated prioritization as the core product problem.</span> Deduplication, root-cause suppression, and confidence-based ranking so a team sees the handful of issues that matter rather than two hundred symptoms of one cause.</li>
-        <li><span class="lead">Designed for the reader, not the engineer.</span> A report-contract gate that encodes every class of bad output found in manual review as a deterministic pre-publish check, plus a jargon linter so non-technical stakeholders can act on a finding without a translator.</li>
-        <li><span class="lead">Built the measurement, then reported it honestly.</span> Defined the evaluation before claiming a result: ~88% precision on the high-confidence tier, and a 25-run cross-model comparison that I published as “no statistically significant winner” (p≈0.33) with the prompt-tuning confound documented, rather than picking the flattering read.</li>
-        <li><span class="lead">Made the product handoff-ready.</span> A 37-file internal knowledge base and two agent skills so the next engineer can audit why the system judged something the way it did — written for onboarding, not for me.</li>
+        <li><span class="lead">Took an open-ended problem to a shipping product.</span> Started from a vague complaint about customer attack scenarios tending to silently rot over time. Turned that into a defined product, including prioritizng findings from the security team’s perspective defining the constraints which the system has to comply to.</li>
+        <li><span class="lead">Made the scoping call that made adoption possible.</span> Chose advisory-and-read-only over auto-remediation and backed it with a five-layer customer data safety guarantee. Decided to trade the capabilities for the confidence that enabled stakeholders to allow to run inside a customer environment.</li>
+        <li><span class="lead">Turned loads of data into actionable insights</span> Deduplication, root-cause suppression, and confidence-based ranking collapse two hundred symptoms of one cause into the handful of issues a team should actually fix. Prioritization is the core product problem here, and I treated it that way.</li>
+        <li><span class="lead">Presentation targeted at the real audience.</span> A report-contract gate turns every class of bad output found in manual review into a deterministic pre-publish check. A jargon linter keeps findings actionable for non-technical stakeholders.</li>
+        <li><span class="lead">Accuracy KPIs and Thresholds</span> Defined quantifiable accuracy KPIs and thresholds and made sure the results include confidence level estimates.</li>
+        <li><span class="lead">Documentation</span> Built a 37-file internal knowledge base and two agent skills make the system handoff-ready so it is possible to drill down into the reasoning behind the decisions the system makes.</li>
     </ul>
     <h4 class="group">Engineering</h4>
     <ul class="bullets">
-        <li>Architected a four-layer analysis engine (data → comparison → detection → orchestration) with enforced import boundaries and 16 independent detectors — 6 LLM-backed, 10 fully deterministic — backed by ~1,100 automated tests, including false-positive regression suites where every adjudicated false positive is encoded so it can never reappear.</li>
-        <li>Built a propose → verify → revise → revert loop that makes LLM-authored advice safe to ship: the model returns structured JSON, nine deterministic verifiers check every claim against platform ground truth, failures get one targeted revision round and then fall back to safe generic text. Every number in the final output is computed in code, never by the model.</li>
-        <li>Designed the anonymization layer that makes LLM use viable in a security product: deterministic regex masking with stable hash pseudonyms, a payload contract enforced at both type-check and runtime so no client can skip anonymization, and a per-run deny-list checked at a single chokepoint that aborts on any leak. Shipped an offline audit tool that proves compliance across a full customer environment with zero LLM calls.</li>
-        <li>Implemented an entity-inventory query layer and tool-calling loop so the model grounds answers in real data: a lazily-built SQLite index over compressed NDJSON, a boolean expression-tree selector parser, and five read-only tools exposed both in-process and over MCP (JSON-RPC 2.0). Queries the index cannot evaluate return unknown rather than a misleading 0.</li>
-        <li>Optimized the comparison hot path with a C extension (bitset Jaccard, popcount intrinsics, size pre-filter), chosen by benchmarking 10 implementations against each other for identical results.</li>
+        <li><span class="lead">Layered Analysis Engine</span> Architected a four-layer analysis engine (data, comparison, detection, orchestration) with enforced import boundaries and 16 independent detectors: 6 LLM-backed, 10 fully deterministic. ~1,100 automated tests back it, including false-positive regression suites where every adjudicated false positive is encoded so it can never reappear.</li>
+        <li><span class="lead">Layered Analysis Engine</span> Built a "propose, verify, revise, revert" loop that makes LLM-authored advice safe to ship. The model returns structured JSON; nine deterministic verifiers check every claim against platform ground truth; failures get one targeted revision round, then fall back to safe generic text. Every number in the final output is computed in code and is reproducible.</li>
+        <li><span class="lead">Layered Analysis Engine</span> Designed the anonymization layer that makes LLM use viable in a security product: deterministic regex masking with stable hash pseudonyms, a payload contract enforced at type-check and at runtime so no client can skip anonymization, and a per-run deny-list checked at a single chokepoint that aborts on any leak. An offline audit tool proves compliance across a full customer environment with zero LLM calls.</li>
+        <li><span class="lead">Layered Analysis Engine</span> Implemented an entity-inventory query layer and tool-calling loop that ground the model’s answers in real data: a lazily-built SQLite index over compressed NDJSON, a boolean expression-tree selector parser, and five read-only tools exposed in-process and over MCP (JSON-RPC 2.0). When the index cannot evaluate a query, the answer is unknown. A misleading 0 would be worse.</li>
+        <li><span class="lead">Layered Analysis Engine</span> Optimized the comparison hot path with a C extension (bitset Jaccard, popcount intrinsics, size pre-filter), chosen by benchmarking 10 implementations against each other for identical results.</li>
     </ul>
     <p class="stack-line"><strong>Stack:</strong> Python (asyncio, httpx, Pydantic, pytest), C, SQLite, Bash, Git, MCP, LLM APIs</p>
 </section>
 <section>
     <h3 class="section">What I Bring</h3>
-    <h4 class="group">Product</h4>
-    <div class="bring-item"><span class="term">Discovery & scoping</span> <span class="sep">&mdash;</span> turning an ambiguous problem into a defined product surface, including what to leave out</div>
-    <div class="bring-item"><span class="term">Prioritization</span> <span class="sep">&mdash;</span> ranking, deduplication, and root-cause thinking so output respects the user’s attention</div>
-    <div class="bring-item"><span class="term">Metrics & evaluation design</span> <span class="sep">&mdash;</span> defining success criteria for non-deterministic systems; A/B benchmarking, ground-truth labeling, LLM-as-judge</div>
-    <div class="bring-item"><span class="term">Writing</span> <span class="sep">&mdash;</span> specs, internal documentation, and customer-facing output written for the actual audience</div>
-    <div class="bring-item"><span class="term">Trust & safety tradeoffs</span> <span class="sep">&mdash;</span> privacy, read-only guarantees, and hallucination containment as product requirements, not afterthoughts</div>
-    <div class="bring-item"><span class="term">AI / LLM systems</span> <span class="sep">&mdash;</span> prompt architecture with named, individually-disableable rule blocks for regression bisection; version-gated prompt variants; structured JSON output and schema enforcement; tool-calling loops with bounded rounds; MCP server implementation; hallucination verification and deterministic fallback design; anonymization for model input; provider abstraction across Claude, Gemini, OpenAI, OpenRouter, and internal gateways</div>
-    <div class="bring-item"><span class="term">Backend & systems</span> <span class="sep">&mdash;</span> Python asyncio, concurrency control, semaphores, circuit breakers; REST clients with exponential backoff and jitter, token refresh, rate-limit handling, pagination normalization; SQLite indexing, atomic build patterns, schema versioning; C extensions via ctypes with NumPy fallback; client-server and socket programming</div>
-    <div class="bring-item"><span class="term">Low-level & security</span> <span class="sep">&mdash;</span> 8086 and AArch64 assembly, OS fundamentals, memory management; reverse engineering and binary analysis (IDA Pro); protocol and packet inspection (Wireshark, Fiddler); least-privilege and read-only architecture design</div>
-    <div class="bring-item"><span class="term">Languages & tools</span> <span class="sep">&mdash;</span> Python, C, C++, Assembly, Java, JavaScript, Node.js | Git, pytest, Docker, GitHub Actions, systemd, Wireshark, IDA Pro, Fiddler | Linux, macOS, Windows</div>
+    <div class="bring-item"><span class="term">AI / LLM systems</span> <span class="sep">&mdash;</span> prompt architecture with individually disableable rule blocks; structured JSON output and schema enforcement; tool-calling loops; MCP server implementation; hallucination verification with deterministic fallback; anonymization of model input; provider abstraction across Claude, Gemini, OpenAI, and OpenRouter</div>
+    <div class="bring-item"><span class="term">Backend & systems</span> <span class="sep">&mdash;</span> Python asyncio and concurrency control; REST clients with backoff, token refresh, and rate-limit handling; SQLite indexing and schema versioning; C extensions via ctypes; client-server and socket programming</div>
+    <div class="bring-item"><span class="term">Low-level & security</span> <span class="sep">&mdash;</span> 8086 and AArch64 assembly; reverse engineering and binary analysis (IDA Pro); protocol and packet inspection (Wireshark, Fiddler); least-privilege and read-only architecture design</div>
+    <div class="bring-item"><span class="term">Languages & tools</span> <span class="sep">&mdash;</span> Python, C, C++, Assembly, Java, JavaScript, Node.js | Git, pytest, Docker, GitHub Actions, Wireshark, IDA Pro | Linux, macOS, Windows</div>
 </section>
 <section>
     <h3 class="section">Projects</h3><div class="project">
         <p class="project-title"><span class="name">Archon — Multi-Platform AI Assistant</span> <span class="sep">&mdash;</span> <span class="tech">Python (asyncio), SQLite, systemd, GitHub Actions, Telegram / WhatsApp / Gmail /
 Google Calendar APIs
 </span></p>
-        <p>Autonomous agent spanning WhatsApp, Telegram, and Gmail: ingests messages, triages them, and acts through a tool-calling loop — operated entirely from a Telegram bot. ~8,900 lines of Python.</p>
+        <p>Autonomous agent spanning WhatsApp, Telegram, and Gmail: it ingests messages, triages them, and acts through a tool-calling loop, operated entirely from a Telegram bot. ~8,900 lines of Python.</p>
         <ul class="bullets">
-            <li>Built a 78-tool agent catalog behind a scope-filtering registry that hides privileged tools from the model rather than relying on refusal, plus a confirmation gate routing every state-mutating action — send, email, calendar — through owner approval. New chats default to confirm-required.</li>
-            <li>Normalized five LLM provider backends — Anthropic content blocks, OpenAI and OpenRouter function-call JSON, Gemini Part objects, and a sandboxed Claude Code subprocess — behind one interface, with a per-call cost model and a hard daily budget gate. Applied prompt caching to the system block to transitively cache all 78 tool schemas.</li>
-            <li>Ran eight subsystems as independently supervised asyncio tasks with per-subsystem exponential backoff (5s→300s), so one failing integration cannot take down the others. All durable state in SQLite (WAL), making restarts safe by construction.</li>
-            <li>Deployed with zero inbound application ports on a systemd-sandboxed VM (ProtectSystem=strict, NoNewPrivileges), CI that gates on the test suite before deploying, and an egress monitor alerting on any unrecognized outbound host.</li>
+            <li>Put a 78-tool agent catalog behind a scope-filtering registry that hides privileged tools from the model entirely, so safety never depends on the model refusing. A confirmation gate routes every state-mutating action (send, email, calendar) through owner approval; new chats default to confirm-required.</li>
+            <li>Normalized five LLM provider backends (Anthropic content blocks, OpenAI and OpenRouter function-call JSON, Gemini Part objects, a sandboxed Claude Code subprocess) behind one interface, with a per-call cost model and a hard daily budget gate. Prompt caching on the system block transitively caches all 78 tool schemas.</li>
+            <li>Ran eight subsystems as independently supervised asyncio tasks with per-subsystem exponential backoff (5s→300s), so one failing integration cannot take down the others. All durable state lives in SQLite (WAL); restarts are safe by construction.</li>
+            <li>Deployed with zero inbound application ports on a systemd-sandboxed VM (ProtectSystem=strict, NoNewPrivileges), CI that gates deploys on the test suite, and an egress monitor that alerts on any unrecognized outbound host.</li>
         </ul>
     </div><div class="project">
         <p class="project-title"><span class="name">Operating System Kernel</span> <span class="sep">&mdash;</span> <span class="tech">C/C++, AArch64 assembly, QEMU, Docker &mdash; in progress</span></p>
@@ -340,7 +350,7 @@ Google Calendar APIs
 </section>
 <section>
     <h3 class="section">Languages</h3>
-    <p class="languages-line">Russian — native · Hebrew — native · English — fluent, and my day-to-day working language</p>
+    <p class="languages-line">Russian: native · Hebrew: native · English: fluent, my day-to-day working language</p>
 </section>
 </body>
 </html>

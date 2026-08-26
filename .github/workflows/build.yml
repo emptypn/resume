@@ -1,14 +1,18 @@
-# Static deploy (2026-08-25). The committed index.html and PDFs ARE the site.
+# Render-and-deploy (2026-08-26). resume-v2.yaml is the source of truth: every push
+# to master re-renders index.html + resume.pdf + resume-v2.pdf from it
+# (render/build_site.py), commits the result back, and deploys — one job, because a
+# GITHUB_TOKEN bot commit cannot trigger a separate deploy workflow.
 #
-# The previous workflow rebuilt index.html and the PDFs from this repo's resume.yaml on
-# every push — which silently overwrote the canonical files the first time they were
-# published from outside: the site kept serving the old resume while the push that
-# updated it showed green. The render source of truth now lives in the jobpipe
-# pipeline (userdata/profile/master-resume.yaml); this repo only hosts the output.
-# create_pdf.py / resume.yaml / resume.html.template remain in-tree as the retired
-# toolchain, deliberately not executed.
+# The committed files still ARE the site (the 2026-08-25 invariant); the render step
+# keeps them in lockstep with the YAML instead of trusting hand updates. The hazard
+# that forced the static deploy — a stale in-repo yaml overwriting canonical files
+# published from outside — is gone by definition: the YAML in this repo is now the
+# canonical source, edited via the resume-v2 branch or directly on master.
+#
+# No render loop: the bot's own push doesn't fire a new push event, and this run's
+# deploy already uses the freshly rendered files.
 
-name: Deploy Resume Site
+name: Render and Deploy Resume Site
 
 on:
   push:
@@ -16,7 +20,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -33,6 +37,34 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install renderer dependencies
+        run: |
+          pip install jinja2 pyyaml playwright
+          playwright install --with-deps chromium
+
+      - name: Render site from resume-v2.yaml
+        run: python render/build_site.py
+
+      - name: Commit rendered files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html resume.pdf resume-v2.pdf
+          if git diff --cached --quiet; then
+            echo "rendered files unchanged"
+          else
+            git commit -m "chore: render site from resume-v2.yaml"
+            git push
+          fi
+
+      - name: Drop build scratch before upload
+        run: rm -rf render/build render/__pycache__
 
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
