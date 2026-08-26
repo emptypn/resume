@@ -87,7 +87,7 @@ experience:
               targeted revision round, then fall back to safe generic text. Every number
               in the final output is computed in code and is reproducible.
           - lead: Layered Analysis Engine 
-            text: 
+            text: |
               Designed the anonymization layer that makes LLM use viable in a security
               product: deterministic regex masking with stable hash pseudonyms, a payload
               contract enforced at type-check and at runtime so no client can skip
