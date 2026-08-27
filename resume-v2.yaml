@@ -15,7 +15,7 @@ section_order: [summary, experience, what_i_bring, projects, education, language
 
 header:
   name: Nachum Getzel Elkind
-  tagline: Software Engineer & Product Owner  —  AI Systems | Cybersecurity
+  tagline: Software Engineer —  AI Systems | Cybersecurity
   contact_items:
     - text: nachumgetzel.elkind@gmail.com
       href: mailto:nachumgetzel.elkind@gmail.com
@@ -27,11 +27,11 @@ header:
     - text: 054-595-5698
 
 summary: |
-  I’m the sole developer, and in practice the product owner, of an LLM engine at
+  I am the sole developer, and in practice the product owner, of an LLM engine at
   XM Cyber that audits customers’ attack-path configurations for an enterprise security
   platform. I scoped what it does and built the verification and privacy layers that
-  make it safe to run in customer environments. My background is low-level systems and
-  reverse engineering from Israel’s Magshimim National Cyber Program.
+  make it safe to run in customer environments. My background in low-level systems and
+  reverse engineering is acquired at Israel’s Magshimim National Cyber Program.
 
 experience:
   - title: Solutions Developer
@@ -60,8 +60,8 @@ experience:
               it run inside a customer environment.
           - |
             Deduplication, root-cause suppression, and confidence-based ranking collapse
-            two hundred symptoms of one cause into the handful of issues a team should
-            actually fix.
+            two hundred symptoms of one cause into the handful of actionable items - real 
+            issues a team should actually fix.
           - lead: Designed the output for the reader.
             text: |
               A report-contract gate turns every class of bad output found in manual
