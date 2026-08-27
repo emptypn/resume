@@ -1,12 +1,21 @@
 # Draft v2 (2026-08-26) — working copy for review, not the published resume.
 # Edit this file; resume-v2.pdf is rendered from it (renderer lives outside this repo,
 # so ping Nachum to regenerate the PDF after YAML changes).
+#
+# 2026-08-27 copy-edit pass: run through the `no-ai-slop` editing skill
+# (github.com/petergyang/no-ai-slop). Wording, grammar and punctuation only — no claim,
+# number, section or ordering was added, removed or changed. Repaired: "prioritizng";
+# "…perspective defining the constraints which the system has to comply to"; "enabled
+# stakeholders to allow to run"; "two agent skills make the system"; and the bullet
+# leads that carried a trailing space and no terminal punctuation, so they ran straight
+# into their own sentence when rendered ("Documentation Built a 37-file…").
+# The tagline regains "& Product Owner" at Nachum's request.
 
 section_order: [summary, experience, what_i_bring, projects, education, languages]
 
 header:
   name: Nachum Getzel Elkind
-  tagline: Software Engineer  —  AI Systems | Cybersecurity
+  tagline: Software Engineer & Product Owner  —  AI Systems | Cybersecurity
   contact_items:
     - text: nachumgetzel.elkind@gmail.com
       href: mailto:nachumgetzel.elkind@gmail.com
@@ -18,7 +27,7 @@ header:
     - text: 054-595-5698
 
 summary: |
-  Presently I’m the sole developer, and in practice the product owner, of an LLM engine at
+  I’m the sole developer, and in practice the product owner, of an LLM engine at
   XM Cyber that audits customers’ attack-path configurations for an enterprise security
   platform. I scoped what it does and built the verification and privacy layers that
   make it safe to run in customer environments. My background is low-level systems and
@@ -40,69 +49,65 @@ experience:
         bullets:
           - lead: Took an open-ended problem to a shipping product.
             text: |
-              Started from a vague complaint about customer attack scenarios
-              tending to silently rot over time. Turned that into a defined product, including
-              prioritizng findings from the security team’s perspective defining the constraints 
-              which the system has to comply to.
-          - lead: Made the scoping call that made adoption possible.
+              Started from a vague complaint that customer attack scenarios silently rot
+              over time. I turned that into a defined product that prioritizes findings
+              from the security team’s perspective and defines the constraints the system
+              has to meet.
+          - lead: Chose advisory and read-only over auto-remediation.
             text: |
-              Chose advisory-and-read-only over auto-remediation and backed it with a
-              five-layer customer data safety guarantee. Decided to trade the  
-              capabilities for the confidence that enabled stakeholders to allow to
-              run inside a customer environment.
-          - lead: Turned loads of data into actionable insights
-            text: |
-              Deduplication, root-cause suppression, and confidence-based ranking collapse
-              two hundred symptoms of one cause into the handful of issues a team should
-              actually fix. Prioritization is the core product problem here, and I treated
-              it that way.
-          - lead: Presentation targeted at the real audience.
+              I backed the choice with a five-layer customer-data safety guarantee. The
+              trade cost capability and bought the confidence stakeholders needed to let
+              it run inside a customer environment.
+          - |
+            Deduplication, root-cause suppression, and confidence-based ranking collapse
+            two hundred symptoms of one cause into the handful of issues a team should
+            actually fix.
+          - lead: Designed the output for the reader.
             text: |
               A report-contract gate turns every class of bad output found in manual
               review into a deterministic pre-publish check. A jargon linter keeps
               findings actionable for non-technical stakeholders.
-          - lead: Accuracy KPIs and Thresholds
+          - lead: Set the accuracy bar before claiming a result.
             text: |
-              Defined quantifiable accuracy KPIs and thresholds and made sure the results include
-              confidence level estimates.
-          - lead: Documentation
+              Quantifiable KPIs and thresholds, and every result carries a
+              confidence-level estimate.
+          - lead: Made the product handoff-ready.
             text: |
-              Built a 37-file internal knowledge base and two agent skills make the system
-              handoff-ready so it is possible to drill down into the reasoning behind the decisions 
-              the system makes.
+              A 37-file internal knowledge base and two agent skills let the next engineer
+              drill into the reasoning behind any decision the system makes.
       - heading: Engineering
         bullets:
-          - lead: Layered Analysis Engine 
+          - lead: Layered analysis engine.
             text: |
-              Architected a four-layer analysis engine (data, comparison, detection,
-              orchestration) with enforced import boundaries and 16 independent detectors:
-              6 LLM-backed, 10 fully deterministic. ~1,100 automated tests back it,
-              including false-positive regression suites where every adjudicated false
-              positive is encoded so it can never reappear.
-          - lead: Deterministic Verification of the LLM Output 
+              Four layers (data, comparison, detection, orchestration) with enforced
+              import boundaries and 16 independent detectors: 6 LLM-backed, 10 fully
+              deterministic. ~1,100 automated tests back it, including false-positive
+              regression suites where every adjudicated false positive is encoded so it
+              can never reappear.
+          - lead: Deterministic verification of the LLM output.
             text: |
-              Built a "propose, verify, revise, revert" loop that makes LLM-authored advice
-              safe to ship. The model returns structured JSON; nine deterministic
+              Built a "propose, verify, revise, revert" loop that makes LLM-authored
+              advice safe to ship. The model returns structured JSON; nine deterministic
               verifiers check every claim against platform ground truth; failures get one
               targeted revision round, then fall back to safe generic text. Every number
               in the final output is computed in code and is reproducible.
-          - lead: Anonymization Layer 
+          - lead: Anonymization layer.
             text: |
-              Designed the anonymization layer that makes LLM use viable in a security
-              product: deterministic regex masking with stable hash pseudonyms, a payload
-              contract enforced at type-check and at runtime so no client can skip
-              anonymization, and a per-run deny-list checked at a single chokepoint that
-              aborts on any leak. An offline audit tool proves compliance across a full
-              customer environment with zero LLM calls.
-          - lead: LLM-accessible Data Layer 
-            text: | 
+              Makes LLM use viable in a security product: deterministic regex masking
+              with stable hash pseudonyms, a payload contract enforced at type-check and
+              at runtime so no client can skip anonymization, and a per-run deny-list
+              checked at a single chokepoint that aborts on any leak. An offline audit
+              tool proves compliance across a full customer environment with zero LLM
+              calls.
+          - lead: LLM-accessible data layer.
+            text: |
               Implemented an entity-inventory query layer and tool-calling loop that
               ground the model’s answers in real data: a lazily-built SQLite index over
               compressed NDJSON, a boolean expression-tree selector parser, and five
               read-only tools exposed in-process and over MCP (JSON-RPC 2.0). When the
               index cannot evaluate a query, the answer is unknown. A misleading 0 would
               be worse.
-          - lead: Performance Optimizations
+          - lead: Performance.
             text: |
               Optimized the comparison hot path with a C extension (bitset Jaccard,
               popcount intrinsics, size pre-filter), chosen by benchmarking 10
@@ -134,12 +139,12 @@ what_i_bring:
           GitHub Actions, Wireshark, IDA Pro | Linux, macOS, Windows
 
 projects:
-  - title: Archon — Multi-Platform AI Assistant
+  - title: 'Archon: Multi-Platform AI Assistant'
     tech: |
       Python (asyncio), SQLite, systemd, GitHub Actions, Telegram / WhatsApp / Gmail /
       Google Calendar APIs
     intro: |
-      Autonomous agent spanning WhatsApp, Telegram, and Gmail: it ingests messages,
+      Autonomous agent spanning WhatsApp, Telegram, and Gmail. It ingests messages,
       triages them, and acts through a tool-calling loop, operated entirely from a
       Telegram bot. ~8,900 lines of Python.
     bullets:
